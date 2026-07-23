@@ -1,0 +1,14 @@
+# channel_switcher.py
+import subprocess
+import time
+
+class ChannelSwitcher:
+    def __init__(self, device_ip):
+        self.device_ip = device_ip
+        self.keyevent_map = {str(i): 7 + i for i in range(10)}  # 0~9 숫자에 대응하는 keyevent
+
+    def switch_channel(self, channel_number):
+        for digit in str(channel_number):
+            if digit in self.keyevent_map:
+                subprocess.run(["adb", "-s", self.device_ip, "shell", "input", "keyevent", str(self.keyevent_map[digit])])
+                time.sleep(0.5)

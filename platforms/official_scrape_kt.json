@@ -1,0 +1,918 @@
+{
+  "source": "https://tv.kt.com/tv/channel/pChInfo.asp",
+  "product": "지니 TV / 전체",
+  "channels": [
+    {
+      "num": 0,
+      "name": "GS MY SHOP"
+    },
+    {
+      "num": 1,
+      "name": "ENA"
+    },
+    {
+      "num": 2,
+      "name": "NS홈쇼핑"
+    },
+    {
+      "num": 3,
+      "name": "tvN"
+    },
+    {
+      "num": 4,
+      "name": "롯데홈쇼핑"
+    },
+    {
+      "num": 5,
+      "name": "SBS"
+    },
+    {
+      "num": 6,
+      "name": "CJ ONSTYLE"
+    },
+    {
+      "num": 7,
+      "name": "KBS2"
+    },
+    {
+      "num": 8,
+      "name": "GS SHOP"
+    },
+    {
+      "num": 9,
+      "name": "KBS1"
+    },
+    {
+      "num": 10,
+      "name": "현대홈쇼핑"
+    },
+    {
+      "num": 11,
+      "name": "MBC"
+    },
+    {
+      "num": 12,
+      "name": "kt알파쇼핑"
+    },
+    {
+      "num": 13,
+      "name": "EBS"
+    },
+    {
+      "num": 14,
+      "name": "홈&쇼핑"
+    },
+    {
+      "num": 15,
+      "name": "JTBC"
+    },
+    {
+      "num": 16,
+      "name": "MBN"
+    },
+    {
+      "num": 17,
+      "name": "SK 스토아"
+    },
+    {
+      "num": 18,
+      "name": "채널A"
+    },
+    {
+      "num": 19,
+      "name": "TV조선"
+    },
+    {
+      "num": 20,
+      "name": "신세계쇼핑"
+    },
+    {
+      "num": 21,
+      "name": "tvN STORY"
+    },
+    {
+      "num": 22,
+      "name": "공영쇼핑"
+    },
+    {
+      "num": 23,
+      "name": "연합뉴스TV"
+    },
+    {
+      "num": 24,
+      "name": "YTN"
+    },
+    {
+      "num": 25,
+      "name": "SBS Biz"
+    },
+    {
+      "num": 26,
+      "name": "OBS"
+    },
+    {
+      "num": 27,
+      "name": "Mnet"
+    },
+    {
+      "num": 28,
+      "name": "현대홈쇼핑+shop"
+    },
+    {
+      "num": 29,
+      "name": "MBC Every1"
+    },
+    {
+      "num": 30,
+      "name": "쇼핑엔티"
+    },
+    {
+      "num": 31,
+      "name": "MBC DRAMA"
+    },
+    {
+      "num": 32,
+      "name": "LOTTE OneTV"
+    },
+    {
+      "num": 33,
+      "name": "OCN"
+    },
+    {
+      "num": 34,
+      "name": "W쇼핑"
+    },
+    {
+      "num": 35,
+      "name": "KBS Drama"
+    },
+    {
+      "num": 36,
+      "name": "NS Shop+"
+    },
+    {
+      "num": 37,
+      "name": "SBS Plus"
+    },
+    {
+      "num": 38,
+      "name": "CJ ONSTYLE+"
+    },
+    {
+      "num": 39,
+      "name": "JTBC2"
+    },
+    {
+      "num": 40,
+      "name": "tvN SHOW"
+    },
+    {
+      "num": 41,
+      "name": "KBS Joy"
+    },
+    {
+      "num": 42,
+      "name": "ENA DRAMA"
+    },
+    {
+      "num": 43,
+      "name": "SBS funE"
+    },
+    {
+      "num": 44,
+      "name": "채널S"
+    },
+    {
+      "num": 45,
+      "name": "tvN DRAMA"
+    },
+    {
+      "num": 46,
+      "name": "드라마큐브"
+    },
+    {
+      "num": 47,
+      "name": "Dramax"
+    },
+    {
+      "num": 48,
+      "name": "OCN Movies"
+    },
+    {
+      "num": 49,
+      "name": "시네마천국"
+    },
+    {
+      "num": 50,
+      "name": "더라이프"
+    },
+    {
+      "num": 51,
+      "name": "SPOTV"
+    },
+    {
+      "num": 52,
+      "name": "SPOTV2"
+    },
+    {
+      "num": 53,
+      "name": "IB SPORTS"
+    },
+    {
+      "num": 54,
+      "name": "tvN SPORTS"
+    },
+    {
+      "num": 55,
+      "name": "GOLF&PBA"
+    },
+    {
+      "num": 56,
+      "name": "JTBC Golf"
+    },
+    {
+      "num": 57,
+      "name": "SBSGOLF"
+    },
+    {
+      "num": 58,
+      "name": "SBS Sports"
+    },
+    {
+      "num": 59,
+      "name": "KBS N Sports"
+    },
+    {
+      "num": 60,
+      "name": "MBC SPORTS+"
+    },
+    {
+      "num": 61,
+      "name": "JTBC SPORTS"
+    },
+    {
+      "num": 62,
+      "name": "SBS Golf2"
+    },
+    {
+      "num": 63,
+      "name": "SPOTV GOLF PLUS"
+    },
+    {
+      "num": 64,
+      "name": "KTV"
+    },
+    {
+      "num": 65,
+      "name": "국회방송"
+    },
+    {
+      "num": 66,
+      "name": "SBS LIFE"
+    },
+    {
+      "num": 67,
+      "name": "GTV"
+    },
+    {
+      "num": 68,
+      "name": "CNTV"
+    },
+    {
+      "num": 69,
+      "name": "TVCHOSUN2"
+    },
+    {
+      "num": 70,
+      "name": "ENA SPORTS"
+    },
+    {
+      "num": 71,
+      "name": "FUN TV"
+    },
+    {
+      "num": 72,
+      "name": "ENA STORY"
+    },
+    {
+      "num": 73,
+      "name": "AsiaN"
+    },
+    {
+      "num": 74,
+      "name": "하이라이트TV"
+    },
+    {
+      "num": 75,
+      "name": "JTBC4"
+    },
+    {
+      "num": 76,
+      "name": "OCN Movies2"
+    },
+    {
+      "num": 77,
+      "name": "HQplus"
+    },
+    {
+      "num": 78,
+      "name": "Lifetime"
+    },
+    {
+      "num": 79,
+      "name": "Edge TV"
+    },
+    {
+      "num": 80,
+      "name": "MBC ON"
+    },
+    {
+      "num": 81,
+      "name": "OBS W"
+    },
+    {
+      "num": 82,
+      "name": "동아TV"
+    },
+    {
+      "num": 83,
+      "name": "KBS Story"
+    },
+    {
+      "num": 84,
+      "name": "스마일티브이플러스"
+    },
+    {
+      "num": 85,
+      "name": "코미디TV"
+    },
+    {
+      "num": 86,
+      "name": "OLIFE"
+    },
+    {
+      "num": 87,
+      "name": "K STAR"
+    },
+    {
+      "num": 88,
+      "name": "ONCE"
+    },
+    {
+      "num": 89,
+      "name": "디원"
+    },
+    {
+      "num": 90,
+      "name": "AsiaM"
+    },
+    {
+      "num": 91,
+      "name": "월드 클래식 무비"
+    },
+    {
+      "num": 92,
+      "name": "아이넷TV"
+    },
+    {
+      "num": 93,
+      "name": "채널이엠"
+    },
+    {
+      "num": 94,
+      "name": "CMCTV"
+    },
+    {
+      "num": 95,
+      "name": "EBS2"
+    },
+    {
+      "num": 96,
+      "name": "엔터TV"
+    },
+    {
+      "num": 97,
+      "name": "다문화티브이"
+    },
+    {
+      "num": 98,
+      "name": "채널A 플러스"
+    },
+    {
+      "num": 99,
+      "name": "MBN Plus"
+    },
+    {
+      "num": 100,
+      "name": "NBS"
+    },
+    {
+      "num": 101,
+      "name": "KFN"
+    },
+    {
+      "num": 102,
+      "name": "채널차이나"
+    },
+    {
+      "num": 103,
+      "name": "mplex"
+    },
+    {
+      "num": 104,
+      "name": "THE MOVIE"
+    },
+    {
+      "num": 105,
+      "name": "CINETREE"
+    },
+    {
+      "num": 106,
+      "name": "스크린"
+    },
+    {
+      "num": 107,
+      "name": "채널나우"
+    },
+    {
+      "num": 108,
+      "name": "채널 J"
+    },
+    {
+      "num": 109,
+      "name": "에이플드라마"
+    },
+    {
+      "num": 110,
+      "name": "중화TV"
+    },
+    {
+      "num": 112,
+      "name": "CH.U"
+    },
+    {
+      "num": 113,
+      "name": "NXT"
+    },
+    {
+      "num": 114,
+      "name": "텔레노벨라"
+    },
+    {
+      "num": 116,
+      "name": "채널W"
+    },
+    {
+      "num": 117,
+      "name": "TVasiaPlus"
+    },
+    {
+      "num": 118,
+      "name": "씨네프"
+    },
+    {
+      "num": 119,
+      "name": "Eurosport"
+    },
+    {
+      "num": 120,
+      "name": "FTV"
+    },
+    {
+      "num": 121,
+      "name": "한국낚시방송"
+    },
+    {
+      "num": 122,
+      "name": "바둑TV"
+    },
+    {
+      "num": 123,
+      "name": "K바둑"
+    },
+    {
+      "num": 126,
+      "name": "브레인TV"
+    },
+    {
+      "num": 127,
+      "name": "빌리어즈티비"
+    },
+    {
+      "num": 128,
+      "name": "마운틴TV"
+    },
+    {
+      "num": 129,
+      "name": "SOOP"
+    },
+    {
+      "num": 130,
+      "name": "CH.WIDE"
+    },
+    {
+      "num": 131,
+      "name": "STN"
+    },
+    {
+      "num": 132,
+      "name": "생활체육TV"
+    },
+    {
+      "num": 133,
+      "name": "스크린골프존"
+    },
+    {
+      "num": 134,
+      "name": "STORYTV"
+    },
+    {
+      "num": 135,
+      "name": "SPOTV PLUS"
+    },
+    {
+      "num": 136,
+      "name": "THE M"
+    },
+    {
+      "num": 137,
+      "name": "MBC M"
+    },
+    {
+      "num": 138,
+      "name": "뉴트로TV"
+    },
+    {
+      "num": 139,
+      "name": "ORFEO"
+    },
+    {
+      "num": 140,
+      "name": "한경arteTV"
+    },
+    {
+      "num": 141,
+      "name": "History"
+    },
+    {
+      "num": 142,
+      "name": "GMTV"
+    },
+    {
+      "num": 143,
+      "name": "가요TV"
+    },
+    {
+      "num": 144,
+      "name": "실버아이TV"
+    },
+    {
+      "num": 145,
+      "name": "이벤트TV"
+    },
+    {
+      "num": 146,
+      "name": "WeLike"
+    },
+    {
+      "num": 147,
+      "name": "붐TV"
+    },
+    {
+      "num": 148,
+      "name": "아이넷라이프"
+    },
+    {
+      "num": 149,
+      "name": "EDGE ON"
+    },
+    {
+      "num": 159,
+      "name": "YTN2"
+    },
+    {
+      "num": 160,
+      "name": "OUN"
+    },
+    {
+      "num": 165,
+      "name": "채널i"
+    },
+    {
+      "num": 168,
+      "name": "TVCHOSUN3"
+    },
+    {
+      "num": 170,
+      "name": "ONT"
+    },
+    {
+      "num": 172,
+      "name": "연합뉴스TV JOB"
+    },
+    {
+      "num": 173,
+      "name": "BALL TV"
+    },
+    {
+      "num": 180,
+      "name": "한국경제TV"
+    },
+    {
+      "num": 181,
+      "name": "MTN 머니투데이방송"
+    },
+    {
+      "num": 182,
+      "name": "매일경제TV"
+    },
+    {
+      "num": 183,
+      "name": "이데일리TV"
+    },
+    {
+      "num": 184,
+      "name": "서울경제TV"
+    },
+    {
+      "num": 185,
+      "name": "TomatoTV"
+    },
+    {
+      "num": 186,
+      "name": "팍스경제TV"
+    },
+    {
+      "num": 187,
+      "name": "연합뉴스경제TV"
+    },
+    {
+      "num": 188,
+      "name": "토마토리빙"
+    },
+    {
+      "num": 190,
+      "name": "SPOTV PRIME 유료"
+    },
+    {
+      "num": 191,
+      "name": "SPOTV PRIME2 유료"
+    },
+    {
+      "num": 192,
+      "name": "SPOTV PRIME+ 유료"
+    },
+    {
+      "num": 193,
+      "name": "캐치온1 유료"
+    },
+    {
+      "num": 194,
+      "name": "캐치온2 유료"
+    },
+    {
+      "num": 204,
+      "name": "viki 유료"
+    },
+    {
+      "num": 205,
+      "name": "미드나잇 유료"
+    },
+    {
+      "num": 206,
+      "name": "Playboy TV 유료"
+    },
+    {
+      "num": 207,
+      "name": "허니TV 유료"
+    },
+    {
+      "num": 208,
+      "name": "핑크하우스TV 유료"
+    },
+    {
+      "num": 209,
+      "name": "DesireTV 유료"
+    },
+    {
+      "num": 210,
+      "name": "비너스 유료"
+    },
+    {
+      "num": 226,
+      "name": "폴라리스TV"
+    },
+    {
+      "num": 251,
+      "name": "국악방송"
+    },
+    {
+      "num": 253,
+      "name": "토마토클래식"
+    },
+    {
+      "num": 254,
+      "name": "WeeTV"
+    },
+    {
+      "num": 258,
+      "name": "채널칭"
+    },
+    {
+      "num": 259,
+      "name": "채널s 플러스"
+    },
+    {
+      "num": 264,
+      "name": "디스토리"
+    },
+    {
+      "num": 265,
+      "name": "E-LIKE"
+    },
+    {
+      "num": 266,
+      "name": "더라이프2"
+    },
+    {
+      "num": 268,
+      "name": "채널액션"
+    },
+    {
+      "num": 276,
+      "name": "리빙TV"
+    },
+    {
+      "num": 278,
+      "name": "사회안전방송"
+    },
+    {
+      "num": 290,
+      "name": "HITS"
+    },
+    {
+      "num": 293,
+      "name": "HGTV"
+    },
+    {
+      "num": 295,
+      "name": "CCTV4"
+    },
+    {
+      "num": 297,
+      "name": "NHK WP"
+    },
+    {
+      "num": 298,
+      "name": "ABC Australia"
+    },
+    {
+      "num": 299,
+      "name": "CNN International"
+    },
+    {
+      "num": 300,
+      "name": "BBC News"
+    },
+    {
+      "num": 301,
+      "name": "Euro News"
+    },
+    {
+      "num": 302,
+      "name": "CGTN"
+    },
+    {
+      "num": 303,
+      "name": "Fox News"
+    },
+    {
+      "num": 304,
+      "name": "Bloomberg"
+    },
+    {
+      "num": 305,
+      "name": "CNBC"
+    },
+    {
+      "num": 306,
+      "name": "TV5MONDE"
+    },
+    {
+      "num": 307,
+      "name": "DW-TV Asia+"
+    },
+    {
+      "num": 961,
+      "name": "ZooMoo"
+    },
+    {
+      "num": 962,
+      "name": "Dream Works Channel"
+    },
+    {
+      "num": 966,
+      "name": "키즈톡톡플러스 유료"
+    },
+    {
+      "num": 969,
+      "name": "다빈치러닝"
+    },
+    {
+      "num": 970,
+      "name": "edu TV"
+    },
+    {
+      "num": 971,
+      "name": "EBS PLUS2"
+    },
+    {
+      "num": 972,
+      "name": "EBS PLUS1"
+    },
+    {
+      "num": 973,
+      "name": "EBS English"
+    },
+    {
+      "num": 974,
+      "name": "플레이런TV"
+    },
+    {
+      "num": 975,
+      "name": "JEI EnglishTV"
+    },
+    {
+      "num": 976,
+      "name": "뽀요TV"
+    },
+    {
+      "num": 977,
+      "name": "Cbeebies"
+    },
+    {
+      "num": 980,
+      "name": "브라보키즈"
+    },
+    {
+      "num": 983,
+      "name": "EBS KIDS"
+    },
+    {
+      "num": 984,
+      "name": "KBS Kids"
+    },
+    {
+      "num": 985,
+      "name": "캐리TV"
+    },
+    {
+      "num": 986,
+      "name": "JEI 재능TV"
+    },
+    {
+      "num": 987,
+      "name": "대교 어린이TV"
+    },
+    {
+      "num": 988,
+      "name": "핑크퐁채널"
+    },
+    {
+      "num": 989,
+      "name": "카투니토"
+    },
+    {
+      "num": 990,
+      "name": "애니플러스"
+    },
+    {
+      "num": 991,
+      "name": "카툰네트워크"
+    },
+    {
+      "num": 993,
+      "name": "애니박스"
+    },
+    {
+      "num": 994,
+      "name": "애니원"
+    },
+    {
+      "num": 995,
+      "name": "ANIMAX"
+    },
+    {
+      "num": 996,
+      "name": "Tooniverse"
+    },
+    {
+      "num": 998,
+      "name": "E채널"
+    },
+    {
+      "num": 999,
+      "name": "ENA PLAY"
+    }
+  ]
+}

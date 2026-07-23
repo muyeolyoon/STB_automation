@@ -1,0 +1,10 @@
+﻿# STB automation
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.exe
+service_account.json
+*.log
+test_log/
+.playwright-mcp/

@@ -1,0 +1,4432 @@
+{
+    "totalRows": 377,
+    "data": [
+        {
+            "id": 1170,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널에버",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 1038,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "(LGU+)라이브공연 UHD",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 1004,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "에이플드라마",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "에이플드라마",
+                "역사",
+                "중국 콘텐츠"
+            ]
+        },
+        {
+            "id": 1003,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "OBS",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "OBS"
+            ]
+        },
+        {
+            "id": 1002,
+            "owner": {
+                "publisherId": 89,
+                "name": "케이티알파"
+            },
+            "title": "시네마천국",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "시네마천국"
+            ]
+        },
+        {
+            "id": 1001,
+            "owner": {
+                "publisherId": 20,
+                "name": "미디어에스(주)"
+            },
+            "title": "채널S플러스",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "채널S플러스"
+            ]
+        },
+        {
+            "id": 1000,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "B tv 해피시니어",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 999,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "에이플드라마",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "에이플드라마",
+                "역사",
+                "중국 콘텐츠"
+            ]
+        },
+        {
+            "id": 998,
+            "owner": {
+                "publisherId": 113,
+                "name": "LG헬로비전"
+            },
+            "title": "캐리TV",
+            "description": null,
+            "forKids": true,
+            "tags": []
+        },
+        {
+            "id": 996,
+            "owner": {
+                "publisherId": 113,
+                "name": "LG헬로비전"
+            },
+            "title": "더라이프2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "더라이프2"
+            ]
+        },
+        {
+            "id": 995,
+            "owner": {
+                "publisherId": 20,
+                "name": "미디어에스(주)"
+            },
+            "title": "채널S",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "채널S"
+            ]
+        },
+        {
+            "id": 994,
+            "owner": {
+                "publisherId": 88,
+                "name": "SPOTV"
+            },
+            "title": "SPOTV Prime+",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SPOTV Prime+"
+            ]
+        },
+        {
+            "id": 993,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "SBS필 UHD",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SBS필 UHD"
+            ]
+        },
+        {
+            "id": 991,
+            "owner": {
+                "publisherId": 146,
+                "name": "SBS 미디어넷"
+            },
+            "title": "SBS Life",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SBS Life"
+            ]
+        },
+        {
+            "id": 990,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "실버아이TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "시니어",
+                "실버아이TV"
+            ]
+        },
+        {
+            "id": 989,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "국악방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "국악",
+                "국악방송",
+                "음악"
+            ]
+        },
+        {
+            "id": 988,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "시니어TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "시니어",
+                "시니어TV"
+            ]
+        },
+        {
+            "id": 987,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널i",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "채널i"
+            ]
+        },
+        {
+            "id": 986,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널이엠",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "채널이엠"
+            ]
+        },
+        {
+            "id": 985,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Davinci Learning",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "Davinci Learning",
+                "교육",
+                "영어 사용자"
+            ]
+        },
+        {
+            "id": 984,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "BBC Lifestyle",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "BBC Lifestyle",
+                "영어 사용자"
+            ]
+        },
+        {
+            "id": 983,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "STINGRAY cmusic",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "STINGRAY cmusic",
+                "공연",
+                "영어 사용자",
+                "음악",
+                "클래식"
+            ]
+        },
+        {
+            "id": 982,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "HQplus",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 981,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "월드클래식무비",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "시니어",
+                "영화",
+                "월드클래식무비"
+            ]
+        },
+        {
+            "id": 980,
+            "owner": {
+                "publisherId": 84,
+                "name": "주식회사 아시아무비"
+            },
+            "title": "AsiaM",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "AsiaM",
+                "중국 콘텐츠"
+            ]
+        },
+        {
+            "id": 979,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "씨네플러스",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "씨네플러스"
+            ]
+        },
+        {
+            "id": 978,
+            "owner": {
+                "publisherId": 113,
+                "name": "LG헬로비전"
+            },
+            "title": "더라이프",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "더라이프"
+            ]
+        },
+        {
+            "id": 977,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "대전 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "대전 MBC"
+            ]
+        },
+        {
+            "id": 976,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "강릉 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "강릉 MBC"
+            ]
+        },
+        {
+            "id": 975,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "춘천 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "춘천 MBC"
+            ]
+        },
+        {
+            "id": 974,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "원주 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "원주 MBC"
+            ]
+        },
+        {
+            "id": 973,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "진주 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "진주 MBC"
+            ]
+        },
+        {
+            "id": 972,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "마산 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "마산 MBC"
+            ]
+        },
+        {
+            "id": 971,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "울산 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "울산 MBC"
+            ]
+        },
+        {
+            "id": 970,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "부산 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "부산 MBC"
+            ]
+        },
+        {
+            "id": 969,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "제주 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "제주 MBC"
+            ]
+        },
+        {
+            "id": 968,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "전주 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "전주 MBC"
+            ]
+        },
+        {
+            "id": 967,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "목포 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "목포 MBC"
+            ]
+        },
+        {
+            "id": 966,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "여수 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "여수 MBC"
+            ]
+        },
+        {
+            "id": 965,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "광주 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "광주 MBC"
+            ]
+        },
+        {
+            "id": 964,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "포항 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "포항 MBC"
+            ]
+        },
+        {
+            "id": 963,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "안동 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "안동 MBC"
+            ]
+        },
+        {
+            "id": 962,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "대구 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "대구 MBC"
+            ]
+        },
+        {
+            "id": 961,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "충주 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "충주 MBC"
+            ]
+        },
+        {
+            "id": 960,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "청주 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "청주 MBC"
+            ]
+        },
+        {
+            "id": 959,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "삼척 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "삼척 MBC"
+            ]
+        },
+        {
+            "id": 958,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "경인 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "경인 KBS1"
+            ]
+        },
+        {
+            "id": 957,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "순천 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "순천 KBS1"
+            ]
+        },
+        {
+            "id": 956,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "광주 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "광주 KBS1"
+            ]
+        },
+        {
+            "id": 955,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "포항 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "포항 KBS1"
+            ]
+        }
+    ]
+}
+{
+    "totalRows": 377,
+    "data": [
+        {
+            "id": 954,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "안동 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "안동 KBS1"
+            ]
+        },
+        {
+            "id": 953,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "강릉 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "강릉 KBS1"
+            ]
+        },
+        {
+            "id": 952,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "춘천 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "춘천 KBS1"
+            ]
+        },
+        {
+            "id": 951,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "원주 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "원주 KBS1"
+            ]
+        },
+        {
+            "id": 950,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "진주 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "진주 KBS1"
+            ]
+        },
+        {
+            "id": 949,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "창원 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "창원 KBS1"
+            ]
+        },
+        {
+            "id": 948,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "울산 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "울산 KBS1"
+            ]
+        },
+        {
+            "id": 947,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "부산 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "부산 KBS1"
+            ]
+        },
+        {
+            "id": 946,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "제주 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "제주 KBS1"
+            ]
+        },
+        {
+            "id": 945,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "전주 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "전주 KBS1"
+            ]
+        },
+        {
+            "id": 944,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "대구 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "대구 KBS1"
+            ]
+        },
+        {
+            "id": 943,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "충주 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "충주 KBS1"
+            ]
+        },
+        {
+            "id": 942,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "청주 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "청주 KBS1"
+            ]
+        },
+        {
+            "id": 941,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "대전 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "대전 KBS1"
+            ]
+        },
+        {
+            "id": 940,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "목포 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "목포 KBS1"
+            ]
+        },
+        {
+            "id": 939,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "KBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "KBC"
+            ]
+        },
+        {
+            "id": 938,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "KNN",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "KNN"
+            ]
+        },
+        {
+            "id": 937,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "G1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "G1"
+            ]
+        },
+        {
+            "id": 936,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "JIBS",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "JIBS"
+            ]
+        },
+        {
+            "id": 935,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "JTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "JTV"
+            ]
+        },
+        {
+            "id": 934,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "UBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "UBC"
+            ]
+        },
+        {
+            "id": 933,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "TBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "TBC"
+            ]
+        },
+        {
+            "id": 932,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CJB",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CJB"
+            ]
+        },
+        {
+            "id": 931,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "TJB",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "TJB"
+            ]
+        },
+        {
+            "id": 930,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "상생방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "상생방송"
+            ]
+        },
+        {
+            "id": 929,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "GOODTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "GOODTV",
+                "기독교",
+                "종교"
+            ]
+        },
+        {
+            "id": 928,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "다문화TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "다문화TV"
+            ]
+        },
+        {
+            "id": 927,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "지방자치TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "지방자치TV"
+            ]
+        },
+        {
+            "id": 926,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "육아방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "영유아",
+                "육아방송",
+                "출산 및 육아"
+            ]
+        },
+        {
+            "id": 925,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "한국직업방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "구인구직",
+                "취업",
+                "한국직업방송"
+            ]
+        },
+        {
+            "id": 924,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "법률방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "법률",
+                "법률방송",
+                "소송"
+            ]
+        },
+        {
+            "id": 923,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "MG소비자TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "MG소비자TV"
+            ]
+        },
+        {
+            "id": 922,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "소상공인방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "소상공인방송",
+                "자영업자"
+            ]
+        },
+        {
+            "id": 921,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "방송대학TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "방송대학TV"
+            ]
+        },
+        {
+            "id": 920,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "에듀TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "교육",
+                "에듀TV",
+                "영어교육",
+                "중국어교육"
+            ]
+        },
+        {
+            "id": 919,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "드림웍스채널",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "드림웍스채널",
+                "만화",
+                "어린이",
+                "영어 사용자",
+                "청소년"
+            ]
+        },
+        {
+            "id": 918,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "잉글리시 젬",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "교육",
+                "영어교육",
+                "영유아",
+                "잉글리시 젬",
+                "키즈"
+            ]
+        },
+        {
+            "id": 917,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Cbeebies",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "Cbeebies",
+                "영어 사용자",
+                "영유아"
+            ]
+        },
+        {
+            "id": 916,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "베이비TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "베이비TV",
+                "영어 사용자",
+                "영유아",
+                "키즈"
+            ]
+        },
+        {
+            "id": 915,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "냇지오피플",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "냇지오피플"
+            ]
+        },
+        {
+            "id": 914,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "HGTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "HGTV"
+            ]
+        },
+        {
+            "id": 913,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "U+라이브공연",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "U+라이브공연",
+                "공연",
+                "음악"
+            ]
+        },
+        {
+            "id": 912,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "TV5몽드",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "TV5몽드",
+                "프랑스어 사용자"
+            ]
+        },
+        {
+            "id": 911,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CNN US",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CNN US",
+                "영어 사용자"
+            ]
+        },
+        {
+            "id": 910,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "블룸버그",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "경제",
+                "뉴스",
+                "블룸버그",
+                "영어 사용자"
+            ]
+        },
+        {
+            "id": 909,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "토마토집통",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "부동산",
+                "토마토집통",
+                "투자/재테크"
+            ]
+        },
+        {
+            "id": 908,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "내외경제TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "금융 및 경제",
+                "내외경제TV",
+                "직장인",
+                "투자/재테크"
+            ]
+        },
+        {
+            "id": 907,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "메조라이브 HD",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "공연",
+                "메조라이브 HD",
+                "음악",
+                "재즈",
+                "클래식"
+            ]
+        },
+        {
+            "id": 906,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "i show",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "i show"
+            ]
+        },
+        {
+            "id": 905,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Now 제주채널",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "Now 제주채널"
+            ]
+        }
+    ]
+}
+{
+    "totalRows": 377,
+    "data": [
+        {
+            "id": 903,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "한국농업방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "농업",
+                "농촌",
+                "한국농업방송"
+            ]
+        },
+        {
+            "id": 902,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "나인컬러스",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "나인컬러스"
+            ]
+        },
+        {
+            "id": 901,
+            "owner": {
+                "publisherId": 83,
+                "name": "주식회사 베리미디어"
+            },
+            "title": "StoryTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "StoryTV"
+            ]
+        },
+        {
+            "id": 900,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "쿠키건강TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "건강",
+                "시니어",
+                "쿠키건강TV"
+            ]
+        },
+        {
+            "id": 899,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "STN스포츠",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "STN스포츠",
+                "스포츠"
+            ]
+        },
+        {
+            "id": 897,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널 MX",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "채널 MX"
+            ]
+        },
+        {
+            "id": 896,
+            "owner": {
+                "publisherId": 86,
+                "name": "주식회사골프존미디어"
+            },
+            "title": "스크린골프존",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "게임",
+                "골프",
+                "레저",
+                "스크린골프",
+                "스크린골프존"
+            ]
+        },
+        {
+            "id": 895,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "유로스포츠",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "스포츠",
+                "영어 사용자",
+                "유로스포츠"
+            ]
+        },
+        {
+            "id": 894,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "스타스포츠",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "스타스포츠",
+                "스포츠"
+            ]
+        },
+        {
+            "id": 893,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "E LIKE",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "E LIKE"
+            ]
+        },
+        {
+            "id": 892,
+            "owner": {
+                "publisherId": 47,
+                "name": "스카이라이프티브이"
+            },
+            "title": "ENA PLAY",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "ENA PLAY"
+            ]
+        },
+        {
+            "id": 891,
+            "owner": {
+                "publisherId": 47,
+                "name": "스카이라이프티브이"
+            },
+            "title": "ENA STORY",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "ENA STORY"
+            ]
+        },
+        {
+            "id": 890,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널칭",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "중국 콘텐츠",
+                "채널칭"
+            ]
+        },
+        {
+            "id": 889,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "인디필름",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "독립영화",
+                "인디필름"
+            ]
+        },
+        {
+            "id": 888,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "NS샵+",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "NS샵+",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 887,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "W쇼핑",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "W쇼핑",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 886,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "K쇼핑플러스",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 883,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "뽀요TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "만화",
+                "뽀요TV",
+                "어린이"
+            ]
+        },
+        {
+            "id": 882,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "대교 베이비TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "대교 베이비TV",
+                "어린이",
+                "출산 및 육아"
+            ]
+        },
+        {
+            "id": 881,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "쇼핑엔티",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "쇼핑엔티",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 880,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "핑크퐁",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 878,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "디자이어TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "디자이어TV",
+                "성인콘텐츠",
+                "유료채널"
+            ]
+        },
+        {
+            "id": 877,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "핑크하우스",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "성인콘텐츠",
+                "유료채널",
+                "핑크하우스"
+            ]
+        },
+        {
+            "id": 876,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "신기한나라TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "신기한나라TV"
+            ]
+        },
+        {
+            "id": 875,
+            "owner": {
+                "publisherId": 88,
+                "name": "SPOTV"
+            },
+            "title": "SPOTV Prime2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SPOTV Prime2"
+            ]
+        },
+        {
+            "id": 874,
+            "owner": {
+                "publisherId": 88,
+                "name": "SPOTV"
+            },
+            "title": "SPOTV Prime",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SPOTV Prime",
+                "스포츠",
+                "유료채널"
+            ]
+        },
+        {
+            "id": 873,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "다큐원",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "다큐원"
+            ]
+        },
+        {
+            "id": 872,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널W",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "일본 콘텐츠",
+                "채널W"
+            ]
+        },
+        {
+            "id": 871,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Natgeo People",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 866,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "MCE",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 865,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "C music",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 864,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Channel V",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 863,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "SkyA&C",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 862,
+            "owner": {
+                "publisherId": 47,
+                "name": "스카이라이프티브이"
+            },
+            "title": "ONCE",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "ONCE",
+                "시니어"
+            ]
+        },
+        {
+            "id": 861,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "skyUHD",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 860,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널i",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "채널i"
+            ]
+        },
+        {
+            "id": 786,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "STAR Sports",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 751,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "MBN+",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "MBN+"
+            ]
+        },
+        {
+            "id": 750,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "230번 SD품질 채널",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "230번 SD품질 채널"
+            ]
+        },
+        {
+            "id": 749,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Test_SCR_L4_맛보기",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "Test_SCR_L4_맛보기"
+            ]
+        },
+        {
+            "id": 748,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Test_SCR_L4_장애인",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "Test_SCR_L4_장애인"
+            ]
+        },
+        {
+            "id": 747,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "국방TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "국방TV",
+                "군인",
+                "정부"
+            ]
+        },
+        {
+            "id": 746,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "NHK World-JAPAN",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "NHK World-JAPAN",
+                "일본어 사용자"
+            ]
+        },
+        {
+            "id": 745,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CNBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CNBC"
+            ]
+        },
+        {
+            "id": 744,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "아웃도어 채널",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "건강",
+                "등산/트래킹",
+                "아웃도어",
+                "아웃도어 채널",
+                "영어 사용자"
+            ]
+        },
+        {
+            "id": 743,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "무비+",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "무비+"
+            ]
+        },
+        {
+            "id": 742,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "현대홈쇼핑+샵",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "현대홈쇼핑+샵",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 740,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "GS마이샵",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "GS마이샵",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 739,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "SK스토아",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SK스토아"
+            ]
+        },
+        {
+            "id": 738,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "롯데 OneTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "롯데 OneTV"
+            ]
+        }
+    ]
+}
+{
+    "totalRows": 377,
+    "data": [
+        {
+            "id": 737,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "EBS2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "EBS2",
+                "교육",
+                "성인교육"
+            ]
+        },
+        {
+            "id": 732,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "UXN-UHD",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "UXN-UHD"
+            ]
+        },
+        {
+            "id": 731,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "U+투데이",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "U+투데이"
+            ]
+        },
+        {
+            "id": 730,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "폴라리스TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "여행",
+                "폴라리스TV"
+            ]
+        },
+        {
+            "id": 729,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "UMAX",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "UMAX"
+            ]
+        },
+        {
+            "id": 728,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "가요TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "가요TV"
+            ]
+        },
+        {
+            "id": 727,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "EBS러닝 중학2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "EBS러닝 중학2",
+                "교육",
+                "중등교육",
+                "중학생",
+                "청소년"
+            ]
+        },
+        {
+            "id": 726,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "이벤트TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "이벤트TV"
+            ]
+        },
+        {
+            "id": 725,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "K쇼핑",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "K쇼핑",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 724,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Sky Healing",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 723,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "생활체육TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 721,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "한국여론방송HD",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 719,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Outdoor Channel",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 718,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "R토마토",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 716,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "다큐스토리",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 715,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "JJC TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 714,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "DWTV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 713,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "onbooktv",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 712,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Australia Plus",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 711,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "SAFE TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 710,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "실버아이TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "시니어",
+                "실버아이TV"
+            ]
+        },
+        {
+            "id": 709,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CMCTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CMCTV",
+                "가족"
+            ]
+        },
+        {
+            "id": 708,
+            "owner": {
+                "publisherId": 47,
+                "name": "스카이라이프티브이"
+            },
+            "title": "ENA DRAMA",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "ENA DRAMA"
+            ]
+        },
+        {
+            "id": 707,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "환경TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 706,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "한국승마TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 704,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Kids TalkTalk 플러스",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 703,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Sky ICT",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 701,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "일자리방송",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 700,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "육아방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "영유아",
+                "육아방송",
+                "출산 및 육아"
+            ]
+        },
+        {
+            "id": 699,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "실버TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 698,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "SOOP",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 697,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "법률방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "법률",
+                "법률방송",
+                "소송"
+            ]
+        },
+        {
+            "id": 696,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "리빙TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 693,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "truTV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 692,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "RTV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 691,
+            "owner": {
+                "publisherId": 82,
+                "name": "제이티비씨포"
+            },
+            "title": "JTBC4",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "JTBC4"
+            ]
+        },
+        {
+            "id": 690,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "NHK World TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 689,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "K.NET",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 688,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "KIDS-TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 687,
+            "owner": {
+                "publisherId": 17,
+                "name": "(주)케이비에스엔"
+            },
+            "title": "KBS LIFE",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "KBS LIFE"
+            ]
+        },
+        {
+            "id": 686,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Fox News",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 685,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Euronews",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 684,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "etn 연예채널",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 683,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Smile TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 681,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CBeebies",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 680,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "BBC Earth",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "BBC Earth",
+                "영어 사용자"
+            ]
+        },
+        {
+            "id": 679,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Animal Planet",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 562,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "원음방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "원불교",
+                "원음방송",
+                "종교"
+            ]
+        },
+        {
+            "id": 560,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "리얼TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "리얼TV"
+            ]
+        },
+        {
+            "id": 559,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널A+",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "채널A+"
+            ]
+        }
+    ]
+}
+{
+    "totalRows": 377,
+    "data": [
+        {
+            "id": 556,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "디스커버리",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "디스커버리",
+                "영어 사용자"
+            ]
+        },
+        {
+            "id": 553,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Cjannel NewsAsia",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 551,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "소상공인방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "소상공인방송",
+                "자영업자"
+            ]
+        },
+        {
+            "id": 550,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "ORFEO",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "ORFEO",
+                "음악"
+            ]
+        },
+        {
+            "id": 548,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "I-Concerts",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "I-Concerts",
+                "공연",
+                "영어사용자",
+                "음악",
+                "클래식"
+            ]
+        },
+        {
+            "id": 545,
+            "owner": {
+                "publisherId": 83,
+                "name": "주식회사 베리미디어"
+            },
+            "title": "GTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "GTV"
+            ]
+        },
+        {
+            "id": 542,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "DOG TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "DOG TV",
+                "강아지",
+                "애완동물",
+                "펫"
+            ]
+        },
+        {
+            "id": 541,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "골프앤PBA",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 538,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "스포티비 골프 앤 헬스",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "건강",
+                "골프",
+                "레저",
+                "스포티비 골프 앤 헬스",
+                "운동/피트니스"
+            ]
+        },
+        {
+            "id": 536,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널J",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "일본 콘텐츠",
+                "채널J"
+            ]
+        },
+        {
+            "id": 533,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "허니TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "성인콘텐츠",
+                "유료채널",
+                "허니TV"
+            ]
+        },
+        {
+            "id": 530,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "플레이보이",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "성인콘텐츠",
+                "유료채널",
+                "플레이보이"
+            ]
+        },
+        {
+            "id": 529,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "비키",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "비키",
+                "성인콘텐츠",
+                "유료채널"
+            ]
+        },
+        {
+            "id": 526,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "미드나잇",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "미드나잇",
+                "성인콘텐츠",
+                "유료채널"
+            ]
+        },
+        {
+            "id": 524,
+            "owner": {
+                "publisherId": 47,
+                "name": "스카이라이프티브이"
+            },
+            "title": "ENA SPORTS",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 521,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "펀TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "펀TV"
+            ]
+        },
+        {
+            "id": 518,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "하이라이트TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "시니어",
+                "하이라이트TV"
+            ]
+        },
+        {
+            "id": 515,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "K스타",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "K스타"
+            ]
+        },
+        {
+            "id": 514,
+            "owner": {
+                "publisherId": 47,
+                "name": "스카이라이프티브이"
+            },
+            "title": "ENA",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "ENA"
+            ]
+        },
+        {
+            "id": 512,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "연합뉴스TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "연합뉴스TV",
+                "직장인"
+            ]
+        },
+        {
+            "id": 511,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "TV조선2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "TV조선2"
+            ]
+        },
+        {
+            "id": 508,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "공영쇼핑",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "공영쇼핑",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 502,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "ONT",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 499,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "OCN Movies",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "OCN Movies"
+            ]
+        },
+        {
+            "id": 496,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "복지TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "복지TV",
+                "유료채널",
+                "장애인"
+            ]
+        },
+        {
+            "id": 493,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "국민방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "국민방송"
+            ]
+        },
+        {
+            "id": 490,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "국회방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "국회방송",
+                "정부",
+                "정책"
+            ]
+        },
+        {
+            "id": 487,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "tbsTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "tbsTV"
+            ]
+        },
+        {
+            "id": 481,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "한국직업방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "구인구직",
+                "취업",
+                "한국직업방송"
+            ]
+        },
+        {
+            "id": 478,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "MBCNET",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "MBCNET"
+            ]
+        },
+        {
+            "id": 472,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "YTN2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "YTN2"
+            ]
+        },
+        {
+            "id": 469,
+            "owner": {
+                "publisherId": 16,
+                "name": "(주)채널더무비"
+            },
+            "title": "더 무비",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "더 무비"
+            ]
+        },
+        {
+            "id": 463,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "STB 상생방송",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 460,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "가톨릭평화방송",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "가톨릭",
+                "가톨릭평화방송",
+                "종교",
+                "천주교",
+                "카톨릭"
+            ]
+        },
+        {
+            "id": 457,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "BBS",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "BBS",
+                "불교",
+                "종교"
+            ]
+        },
+        {
+            "id": 454,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "BTN",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "BTN",
+                "불교",
+                "종교"
+            ]
+        },
+        {
+            "id": 451,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CGNTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CGNTV",
+                "중국어 사용자"
+            ]
+        },
+        {
+            "id": 448,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "C채널",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "C채널",
+                "기독교",
+                "종교"
+            ]
+        },
+        {
+            "id": 445,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "GoodTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "GoodTV",
+                "기독교",
+                "종교"
+            ]
+        },
+        {
+            "id": 442,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CTS",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CTS",
+                "기독교",
+                "종교"
+            ]
+        },
+        {
+            "id": 439,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CBS",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CBS",
+                "기독교",
+                "종교"
+            ]
+        },
+        {
+            "id": 436,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "tvN DRAMA",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "tvN DRAMA"
+            ]
+        },
+        {
+            "id": 433,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널차이나",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "중국 콘텐츠",
+                "채널차이나"
+            ]
+        },
+        {
+            "id": 430,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "tvN SPORTS",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "tvN SPORTS",
+                "스포츠"
+            ]
+        },
+        {
+            "id": 427,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "MBC ON",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "MBC ON"
+            ]
+        },
+        {
+            "id": 424,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "씨네프",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "씨네프"
+            ]
+        },
+        {
+            "id": 421,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "애니박스",
+            "description": null,
+            "forKids": true,
+            "tags": [
+                "만화",
+                "애니박스",
+                "어린이",
+                "청소년"
+            ]
+        },
+        {
+            "id": 418,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "카툰네트워크",
+            "description": null,
+            "forKids": true,
+            "tags": [
+                "카툰네트워크"
+            ]
+        },
+        {
+            "id": 415,
+            "owner": {
+                "publisherId": 146,
+                "name": "SBS 미디어넷"
+            },
+            "title": "SBS GOLF2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SBS GOLF2",
+                "골프",
+                "레저"
+            ]
+        },
+        {
+            "id": 412,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "애니플러스",
+            "description": null,
+            "forKids": true,
+            "tags": [
+                "만화",
+                "애니플러스",
+                "어린이",
+                "청소년"
+            ]
+        }
+    ]
+}
+{
+    "totalRows": 377,
+    "data": [
+        {
+            "id": 409,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "애니원",
+            "description": null,
+            "forKids": true,
+            "tags": [
+                "만화",
+                "애니원",
+                "어린이",
+                "청소년"
+            ]
+        },
+        {
+            "id": 406,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "애니맥스",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "만화",
+                "애니맥스",
+                "어린이",
+                "청소년"
+            ]
+        },
+        {
+            "id": 403,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "디즈니 주니어",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "디즈니",
+                "디즈니 주니어",
+                "출산 및 육아"
+            ]
+        },
+        {
+            "id": 400,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "디즈니 채널",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "디즈니",
+                "디즈니 채널",
+                "출산 및 육아"
+            ]
+        },
+        {
+            "id": 397,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "투니버스",
+            "description": null,
+            "forKids": true,
+            "tags": [
+                "만화",
+                "어린이",
+                "청소년",
+                "투니버스"
+            ]
+        },
+        {
+            "id": 394,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "키즈톡톡+",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "교육",
+                "어린이",
+                "영어교육",
+                "키즈톡톡+"
+            ]
+        },
+        {
+            "id": 391,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "EBS키즈",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "EBS키즈",
+                "교육",
+                "어린이",
+                "출산 및 육아"
+            ]
+        },
+        {
+            "id": 388,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "브라보키즈",
+            "description": null,
+            "forKids": true,
+            "tags": [
+                "브라보키즈",
+                "어린이",
+                "영유아",
+                "청소년"
+            ]
+        },
+        {
+            "id": 385,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "JEI재능TV",
+            "description": null,
+            "forKids": true,
+            "tags": [
+                "JEI재능TV",
+                "만화",
+                "어린이"
+            ]
+        },
+        {
+            "id": 382,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "어린이TV",
+            "description": null,
+            "forKids": true,
+            "tags": [
+                "어린이",
+                "어린이TV",
+                "영유아"
+            ]
+        },
+        {
+            "id": 379,
+            "owner": {
+                "publisherId": 85,
+                "name": "주식회사 케이비에스엔씨앤씨"
+            },
+            "title": "KBS키즈",
+            "description": null,
+            "forKids": true,
+            "tags": [
+                "KBS키즈",
+                "만화",
+                "어린이",
+                "영유아"
+            ]
+        },
+        {
+            "id": 376,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CJ온스타일플러스",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CJ온스타일플러스",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 373,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Euro sport",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "Euro sport",
+                "스포츠",
+                "영어 사용자"
+            ]
+        },
+        {
+            "id": 370,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "엣지TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "시니어",
+                "엣지TV"
+            ]
+        },
+        {
+            "id": 367,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "JTBC골프",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "JTBC골프",
+                "골프",
+                "레저"
+            ]
+        },
+        {
+            "id": 364,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "SBS골프",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SBS골프",
+                "골프",
+                "레저"
+            ]
+        },
+        {
+            "id": 361,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "빌리어즈TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "당구",
+                "빌리어즈TV"
+            ]
+        },
+        {
+            "id": 358,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "스포티비2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "스포츠",
+                "스포티비2"
+            ]
+        },
+        {
+            "id": 355,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "스포티비",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "스포츠",
+                "스포티비"
+            ]
+        },
+        {
+            "id": 352,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "IB스포츠",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "IB스포츠",
+                "스포츠"
+            ]
+        },
+        {
+            "id": 349,
+            "owner": {
+                "publisherId": 17,
+                "name": "(주)케이비에스엔"
+            },
+            "title": "KBSN스포츠",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "KBSN스포츠"
+            ]
+        },
+        {
+            "id": 346,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "MBC스포츠+",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "MBC스포츠+"
+            ]
+        },
+        {
+            "id": 343,
+            "owner": {
+                "publisherId": 146,
+                "name": "SBS 미디어넷"
+            },
+            "title": "SBS스포츠",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SBS스포츠"
+            ]
+        },
+        {
+            "id": 340,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "Mnet",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 337,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "tvN",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "tvN"
+            ]
+        },
+        {
+            "id": 334,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "아이넷TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "시니어",
+                "아이넷TV",
+                "음악",
+                "트로트"
+            ]
+        },
+        {
+            "id": 331,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "GMTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "GMTV",
+                "음악",
+                "트로트"
+            ]
+        },
+        {
+            "id": 328,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "MBC M",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "MBC M"
+            ]
+        },
+        {
+            "id": 325,
+            "owner": {
+                "publisherId": 146,
+                "name": "SBS 미디어넷"
+            },
+            "title": "THE M",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 322,
+            "owner": {
+                "publisherId": 82,
+                "name": "제이티비씨포"
+            },
+            "title": "JTBC2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "JTBC2"
+            ]
+        },
+        {
+            "id": 316,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "SBS퍼니",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SBS퍼니"
+            ]
+        },
+        {
+            "id": 313,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "STATV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "STATV"
+            ]
+        },
+        {
+            "id": 310,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "OGN",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "OGN",
+                "게임"
+            ]
+        },
+        {
+            "id": 307,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "JTBC골프앤스포츠",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "JTBC골프앤스포츠",
+                "골프",
+                "레저",
+                "스포츠"
+            ]
+        },
+        {
+            "id": 304,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "냇지오 와일드",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "냇지오 와일드"
+            ]
+        },
+        {
+            "id": 301,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "히스토리",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "영미콘텐츠",
+                "히스토리"
+            ]
+        },
+        {
+            "id": 298,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "YTN사이언스",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "YTN사이언스"
+            ]
+        },
+        {
+            "id": 295,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "내셔널지오그래픽",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "내셔널지오그래픽"
+            ]
+        },
+        {
+            "id": 292,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "여수 MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "여수 MBC"
+            ]
+        },
+        {
+            "id": 289,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "JEI EnglishTV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "JEI EnglishTV",
+                "교육",
+                "어린이",
+                "영어교육"
+            ]
+        },
+        {
+            "id": 283,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "플레이런TV",
+            "description": null,
+            "forKids": true,
+            "tags": [
+                "교육",
+                "어린이",
+                "플레이런TV"
+            ]
+        },
+        {
+            "id": 280,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "EBS English",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "EBS English",
+                "교육",
+                "성인교육",
+                "영어교육"
+            ]
+        },
+        {
+            "id": 277,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "EBS+2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "EBS+2",
+                "교육"
+            ]
+        },
+        {
+            "id": 274,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "EBS+1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "EBS+1",
+                "고등학생",
+                "입시",
+                "청소년"
+            ]
+        },
+        {
+            "id": 271,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "전주 KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "전주 KBS1"
+            ]
+        },
+        {
+            "id": 268,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "INETLIFE",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "INETLIFE"
+            ]
+        },
+        {
+            "id": 265,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "한방건강TV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 262,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "카투니토",
+            "description": null,
+            "forKids": true,
+            "tags": []
+        },
+        {
+            "id": 259,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "한경arteTV",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 256,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "BBC Knowledge",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        }
+    ]
+}
+{
+    "totalRows": 377,
+    "data": [
+        {
+            "id": 88,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "한국경제TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "금융 및 경제",
+                "직장인",
+                "투자/재테크",
+                "한국경제TV"
+            ]
+        },
+        {
+            "id": 85,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "팍스경제TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "금융 및 경제",
+                "직장인",
+                "투자/재테크",
+                "팍스경제TV"
+            ]
+        },
+        {
+            "id": 82,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "토마토증권통",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "증권",
+                "토마토증권통",
+                "투자/재테크"
+            ]
+        },
+        {
+            "id": 79,
+            "owner": {
+                "publisherId": 146,
+                "name": "SBS 미디어넷"
+            },
+            "title": "SBS Biz",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SBS Biz",
+                "금융 및 경제",
+                "직장인",
+                "투자/재테크"
+            ]
+        },
+        {
+            "id": 76,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CCTV4",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CCTV4",
+                "중국어 사용자"
+            ]
+        },
+        {
+            "id": 73,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "신세계쇼핑",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "신세계쇼핑",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 67,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "NHK World Premium",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "NHK World Premium",
+                "일본어 사용자"
+            ]
+        },
+        {
+            "id": 64,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "아리랑TV",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "아리랑TV"
+            ]
+        },
+        {
+            "id": 58,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "BBC World News",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "BBC World News",
+                "영어 사용자"
+            ]
+        },
+        {
+            "id": 55,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CNN International",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CNN International",
+                "영어 사용자"
+            ]
+        },
+        {
+            "id": 49,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "YTN",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "YTN"
+            ]
+        },
+        {
+            "id": 46,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "TV조선",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "TV조선"
+            ]
+        },
+        {
+            "id": 43,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "채널A",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "채널A"
+            ]
+        },
+        {
+            "id": 40,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "MBN",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "MBN"
+            ]
+        },
+        {
+            "id": 37,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "JTBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "JTBC"
+            ]
+        },
+        {
+            "id": 34,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "NS홈쇼핑",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "NS홈쇼핑",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 31,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "GS샵",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "GS샵",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 28,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "롯데홈쇼핑",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "롯데홈쇼핑",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 25,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "현대홈쇼핑",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "현대홈쇼핑",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 22,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "CJ오쇼핑",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "CJ오쇼핑",
+                "홈쇼핑(채널)"
+            ]
+        },
+        {
+            "id": 19,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "홈앤쇼핑",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "홈쇼핑(채널)",
+                "홈앤쇼핑"
+            ]
+        },
+        {
+            "id": 16,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "OBS",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "OBS"
+            ]
+        },
+        {
+            "id": 13,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "EBS1",
+            "description": null,
+            "forKids": false,
+            "tags": []
+        },
+        {
+            "id": 10,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "MBC",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "MBC"
+            ]
+        },
+        {
+            "id": 7,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "KBS1",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "KBS1"
+            ]
+        },
+        {
+            "id": 4,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "KBS2",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "KBS2"
+            ]
+        },
+        {
+            "id": 1,
+            "owner": {
+                "publisherId": 1,
+                "name": "ART"
+            },
+            "title": "SBS",
+            "description": null,
+            "forKids": false,
+            "tags": [
+                "SBS"
+            ]
+        }
+    ]
+}
