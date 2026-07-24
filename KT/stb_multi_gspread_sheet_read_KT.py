@@ -17,7 +17,7 @@ from component.ad_sync_recovery import on_log_line_ad_not_ready_recovery
 from component.channel_mapping import get_channel_number  # 채널명 → 번호 매핑
 
 SPREADSHEET_KEY = "1LTex75-xh9YgcwLiXDmYq8I-fZhQM5wx17mxHX8D88o"
-SERVICE_ACCOUNT_PATH = r"D:\python_test\anypointmedia-QA\stb-rpa\service_account.json"
+SERVICE_ACCOUNT_PATH = os.path.join(stbrpa_dir, "service_account.json")
 
 
 def current_time_str():
@@ -66,7 +66,6 @@ def monitor_and_switch_channels_with_data(data, devices):
                     # 채널명 → 번호 변환
                     channel_number = get_channel_number(row["채널명"])
                     if not channel_number:
-                        print(f"{current_time_str()} 채널번호 없음: {row['채널명']}")
                         data.pop(i)
                         continue
                     row["채널번호"] = channel_number  # 변환된 번호 저장
