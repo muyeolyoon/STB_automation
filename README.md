@@ -40,7 +40,7 @@ cd <this-repo>
 ```
 
 시크릿은 커밋하지 않음. `service_account.json`은 로컬에만 두고 경로를 맞춤.  
-알림은 Slack을 쓰지 않음(콘솔/`[notify]` print만).
+외부 메신저 알림은 사용하지 않음(콘솔/`[notify]` print만).
 
 ## 구조 정리 방향 (아직 안 함 / 의도적)
 
