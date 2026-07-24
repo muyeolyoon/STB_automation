@@ -3,10 +3,8 @@ import time
 import os, sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from datetime import datetime, timedelta
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
 import threading
-from component.setting import Setting, Slack
+from component.setting import Setting
 from component.channel_controller import switch_channel
 from component.ad_schedule_loader import AdScheduleLoader
 
@@ -17,26 +15,14 @@ recording_file = f"{timestamp}.mp4"
 log_file = f"ad_log_{timestamp}.txt"
 
 # 슬랙 클라이언트
-client = WebClient(token=Slack.SLACK_BOT_TOKEN)
 log_proc = None
 
-class SlackReporter:
+class LocalNotifier:
     @staticmethod
-    def send_file(file_path, title):
-        if not os.path.exists(file_path):
-            print(f"파일 없음: {file_path}")
-            return
-        try:
-            with open(file_path, "rb") as f:
-                client.files_upload_v2(
-                    channel=Slack.CHANNEL_ID,
-                    file=f,
-                    filename=os.path.basename(file_path),
-                    title=title
-                )
-            print(f"Slack 업로드 완료: {file_path}")
-        except SlackApiError as e:
-            print(f"Slack 업로드 실패: {e.response['error']}")
+    def send_file(file_path, title=None):
+        print(f"[notify skipped] file={file_path} title={title}")
+
+
 
 class Recorder:
     @staticmethod
@@ -88,9 +74,9 @@ class LogCapture:
             log_proc.wait()
             time.sleep(2)
             if os.path.exists(filtered_log_file) and os.path.getsize(filtered_log_file) > 10:
-                SlackReporter.send_file(filtered_log_file, "AddrAD 필터 로그")
+                LocalNotifier.send_file(filtered_log_file, "AddrAD 필터 로그")
             else:
-                print("유효한 AddrAD 로그가 없어 Slack 전송 생복")
+                print("유효한 AddrAD 로그가 없어 알림 생복")
 
 class AdMonitor:
     def __init__(self, device_ip, recording_file):
@@ -156,8 +142,8 @@ class AdMonitor:
                         self.ad_blocks.append(self.current_block)
                     messages = [f"*[{i+1}] 광고 감지 결과:*\n" + "\n".join(block) for i, block in enumerate(self.ad_blocks)]
                     self.log_to_file(messages)
-                    SlackReporter.send_file(log_file, "광고 로그 텍스트")
-                    SlackReporter.send_file(self.recording_file, "광고 녹화 영상")
+                    LocalNotifier.send_file(log_file, "광고 로그 텍스트")
+                    LocalNotifier.send_file(self.recording_file, "광고 녹화 영상")
                     break
 
 

@@ -6,12 +6,9 @@ import subprocess
 from datetime import datetime, timedelta
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from component.setting import AirtelSetting, Slack
+from component.setting import AirtelSetting
 
-slack_client = WebClient(token=Slack.SLACK_BOT_TOKEN)
 
 
 TS_PATTERN         = re.compile(r"^(?P<md>\d{2}-\d{2}) (?P<hms>\d{2}:\d{2}:\d{2}\.\d{3})")
@@ -36,18 +33,15 @@ LOG_DIR = "log"
 os.makedirs(LOG_DIR, exist_ok=True)
 
 
-def send_slack_message(txt: str):
-    try:
-        slack_client.chat_postMessage(channel=Slack.CHANNEL_ID, text=txt)
-    except SlackApiError as e:
-        print("[Slack 오류]", e.response["error"])
+def notify(message):
+    print(f"[notify] {message}")
 
 
-def send_slack_file(path: str, title: str):
-    try:
-        slack_client.files_upload_v2(channel=Slack.CHANNEL_ID, file=path, title=title)
-    except SlackApiError as e:
-        print("[Slack 파일 오류]", e.response["error"])
+
+def notify_file(file_path, title=None):
+    print(f"[notify skipped] file={file_path} title={title}")
+
+
 
 def adb(*cmd):
     return subprocess.run(["adb", "-s", AirtelSetting.device_ip, *map(str, cmd)], capture_output=True)
@@ -162,7 +156,7 @@ def monitor(ads):
                 break
         if not cue_detected:
             proc.terminate()
-            send_slack_message(f"[PASS] {name}({ch})  3 분 내 receive cue 미감지 → 다음 스케줄로")
+            notify(f"[PASS] {name}({ch})  3 분 내 receive cue 미감지 → 다음 스케줄로")
             continue  # 다음 광고로
 
         # 이후 AdPlayItem ~ Impression/POST/200 감시
@@ -208,12 +202,12 @@ def monitor(ads):
         f"- ImpressionLog: {res['impr_cnt']}건",
         f"- playTime 총합: {res['total_playtime']}",
         f"- 노출 POST/200: {'OK' if res['post_ok'] else 'FAIL'}"]
-        send_slack_message("\n".join(msg))
+        notify("\n".join(msg))
 
         addrad_path = os.path.join(LOG_DIR, f"{datetime.now():%Y%m%d_%H%M%S}_{ch}_AddrAD.log")
         with open(addrad_path, "w", encoding="utf-8") as fp:
             fp.write("\n".join(addrad_lines))
-        send_slack_file(addrad_path, f"{name}_{ch}_AddrAD_log")
+        notify_file(addrad_path, f"{name}_{ch}_AddrAD_log")
 
 
         return
@@ -222,9 +216,9 @@ if __name__ == "__main__":
     try:
         schedule = load_schedule()
         if not schedule:
-            send_slack_message("[경고] 오늘 모니터링할 광고 편성이 없습니다.")
+            notify("[경고] 오늘 모니터링할 광고 편성이 없습니다.")
             sys.exit(0)
         monitor(schedule)
     except Exception as e:
-        send_slack_message(f"[오류] {e}")
+        notify(f"[오류] {e}")
         raise

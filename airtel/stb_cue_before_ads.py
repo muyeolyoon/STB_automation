@@ -6,67 +6,18 @@ import requests
 from datetime import datetime, timedelta
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
 
 # 상위 경로 import
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from component.setting import AirtelSetting, Slack
+from component.setting import AirtelSetting
 
 # 슬랙 설정
-slack_client = WebClient(token=Slack.SLACK_BOT_TOKEN)
 
 # 슬랙 메시지 전송
-def send_slack_message(message):
-    try:
-        slack_client.chat_postMessage(channel=Slack.CHANNEL_ID, text=message)
-    except SlackApiError as e:
-        print(f"Slack 메시지 실패: {e.response['error']}")
+def notify(message):
+    print(f"[notify] {message}")
 
-# 슬랙 파일 전송
-def send_slack_file(file_path, title):
-    try:
-        slack_client.files_upload_v2(
-            channel=Slack.CHANNEL_ID,
-            file=file_path,
-            title=title
-        )
-    except SlackApiError as e:
-        print(f"Slack 파일 업로드 실패: {e.response['error']}")
 
-# POST 요청
-def send_post_request():
-    url = "http://uplus-device-app-prod2.ap-northeast-2.elasticbeanstalk.com/v3/devices/commands"
-    headers = {"Content-Type": "application/json"}
-    body = {
-        "serverMessageType": "UpdateAssetCommand",
-        "deviceIds": [47051029]
-    }
-    try:
-        response = requests.post(url, headers=headers, json=body)
-        response.raise_for_status()
-        return body["deviceIds"][0]
-    except requests.exceptions.RequestException as e:
-        send_slack_message(f"[오류] POST 요청 실패: {e}")
-        exit()
-
-# 디렉토리 생성
-LOG_DIR = "log"
-RECORD_DIR = "recordings"
-os.makedirs(LOG_DIR, exist_ok=True)
-os.makedirs(RECORD_DIR, exist_ok=True)
-
-# 채널 전환
-def switch_channel(channel_number):
-    keyevent_map = {str(i): 7 + i for i in range(10)}
-    for digit in str(channel_number):
-        if digit in keyevent_map:
-            subprocess.run(["adb", "-s", AirtelSetting.device_ip, "shell", "input", "keyevent", str(keyevent_map[digit])])
-            time.sleep(0.5)
-
-# 로그 초기화 및 수집
-def clear_logcat():
-    subprocess.run(["adb", "-s", AirtelSetting.device_ip, "logcat", "-c"])
 
 def start_logcat():
     return subprocess.Popen(["adb", "-s", AirtelSetting.device_ip, "logcat", "-v", "time"],
@@ -95,7 +46,7 @@ def load_ad_schedule():
             )
         return sorted(ad_schedule, key=lambda x: x["ad_time"])
     except Exception as e:
-        send_slack_message(f"[오류] 광고 스케줄 로드 실패: {e}")
+        notify(f"[오류] 광고 스케줄 로드 실패: {e}")
         exit()
 
 # 로그 파싱
@@ -165,15 +116,15 @@ def monitor_ads(device_id, ad_schedule):
 
         impression_logs = parse_impression_log_section(all_lines)
         if impression_logs:
-            send_slack_message(f"[FAIL] {channel_name}({channel}) 채널 - 광고 재생전 채널 변경 결과 : FAIL")
+            notify(f"[FAIL] {channel_name}({channel}) 채널 - 광고 재생전 채널 변경 결과 : FAIL")
         else:
-            send_slack_message(f"[PASS] {channel_name}({channel}) 채널 - 광고 재생전 채널 변경 PASS")
+            notify(f"[PASS] {channel_name}({channel}) 채널 - 광고 재생전 채널 변경 PASS")
         return
 # 메인 실행
 if __name__ == "__main__":
     device_id = send_post_request()
     schedule = load_ad_schedule()
     if not schedule:
-        send_slack_message("[경고] 광고 스케줄 없음")
+        notify("[경고] 광고 스케줄 없음")
         exit()
     monitor_ads(device_id, schedule)

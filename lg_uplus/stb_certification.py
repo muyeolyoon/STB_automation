@@ -7,7 +7,7 @@ import os, sys
 
 # 내부 모듈 경로 추가
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from component.setting import Setting, Slack
+from component.setting import Setting
 
 timeout = 1400          # 전체 타임아웃(초)
 timeout02 = 30          # kid=true id 감지 후 추가 대기(초)
@@ -91,15 +91,9 @@ def double_sha256(value: str) -> str:
     """두 번 SHA-256"""
     return hashlib.sha256(hashlib.sha256(value.encode()).hexdigest().encode()).hexdigest()
 
-def send_slack_summary(summary: str):
-    try:
-        resp = requests.post(Slack.SLACK_WEBHOOK_URL, json={"text": summary})
-        if resp.status_code == 200:
-            print("Slack 전송 완료")
-        else:
-            print(f"Slack 전송 실패: {resp.status_code}")
-    except Exception as e:
-        print(f"Slack 전송 중 오류: {e}")
+def notify_summary(summary: str):
+    print(f"[notify] {summary}")
+
 
 def reboot_and_restart():
     print("셋탑박스 재부팅 중...")
@@ -142,7 +136,7 @@ try:
 
         if "failed to authenticate" in line.lower():
             print("인증 실패 감지됨! 재부팅 및 재시작")
-            send_slack_summary("인증 실패 감지됨. 셋탑박스를 재부팅하고 스크립트를 재시작합니다.")
+            notify_summary("인증 실패 감지됨. 셋탑박스를 재부팅하고 스크립트를 재시작합니다.")
             process.terminate()
             reboot_and_restart()
 
@@ -260,6 +254,6 @@ finally:
 
     summary_lines.append(f"\n종료 시각: {time.strftime('%Y-%m-%d %H:%M:%S')}")
 
-    # Slack 전송
-    send_slack_summary("\n".join(summary_lines))
-    print("Slack 전송 및 종료 완료")
+    # 알림
+    notify_summary("\n".join(summary_lines))
+    print("알림 및 종료 완료")

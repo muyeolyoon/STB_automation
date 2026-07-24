@@ -2,14 +2,8 @@
 import time
 import os
 from datetime import datetime
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
 
-# Slack API 설정
-SLACK_BOT_TOKEN = os.environ.get("SLACK_BOT_TOKEN", "")
-CHANNEL_ID = "C08KBRUUVSS"  # Slack 채널 ID
 
-client = WebClient(token=SLACK_BOT_TOKEN)
 
 adb_path = r"adb"
 device_ip = "192.168.10.8:5555"
@@ -40,27 +34,11 @@ def stop_screen_recording():
     subprocess.run([adb_path, "-s", device_ip, "pull", f"/sdcard/{recording_file}", f"./{recording_file}"])
 
 
-def send_slack_files(*file_paths):
-    for file_path in file_paths:
-        if os.path.exists(file_path):
-            try:
-                with open(file_path, "rb") as f:
-                    response = client.files_upload_v2(
-                        channel=CHANNEL_ID,
-                        file=f,
-                        filename=os.path.basename(file_path),
-                        title=os.path.basename(file_path)
-                    )
-                print(f"✅ Slack 전송 성공: {file_path}")
-            except SlackApiError as e:
-                print(f"❌ Slack 전송 실패: {e.response['error']}")
-        else:
-            print(f"📂 존재하지 않아 전송 제외: {file_path}")
-            
-def log_event(event):
-    with open(log_file, "a") as f:
-        f.write(f"{datetime.now()} - {event}\n")
-    print(f"로그 기록: {event}")
+def notify_files(*file_paths):
+    for p in file_paths:
+        print(f"[notify skipped] file={p}")
+
+
 
 def run_scenario():
         # 녹화 시작
@@ -177,8 +155,8 @@ def run_scenario():
     # 녹화 종료
     stop_screen_recording()
 
-    # Slack으로 파일 전송
-    send_slack_files(log_file, recording_file)
+    # 로컬로 파일 전송
+    notify_files(log_file, recording_file)
 
 
 run_scenario()

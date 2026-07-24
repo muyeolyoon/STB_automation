@@ -2,14 +2,10 @@
 import time
 import os
 from datetime import datetime
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
 import threading
 
 
 # 설정
-SLACK_BOT_TOKEN = os.environ.get("SLACK_BOT_TOKEN", "")CHANNEL_ID = "C08KBRUUVSS"  
-client = WebClient(token=SLACK_BOT_TOKEN)
 
 adb_path = "adb"
 device_ip = "192.168.10.8:5555"
@@ -59,11 +55,11 @@ def stop_log_capture():
         log_proc.wait()
         time.sleep(2)  # 파일 버퍼 비우는 시간 살짝 주기
 
-        # 로그 유효성 검사: 파일이 존재하고 10바이트 이상이면 Slack 전송
+        # 로그 유효성 검사: 파일이 존재하고 10바이트 이상이면 알림
         if os.path.exists(filtered_log_file) and os.path.getsize(filtered_log_file) > 10:
-            send_slack_file(filtered_log_file, "AddrAD 필터 로그")
+            notify_file(filtered_log_file, "AddrAD 필터 로그")
         else:
-            print("유효한 AddrAD 로그가 없어 Slack 전송 생략")
+            print("유효한 AddrAD 로그가 없어 알림 생략")
     else:
         print("로그 수집 프로세스가 존재하지 않음")
 
@@ -80,21 +76,10 @@ def stop_screen_recording():
     time.sleep(2)
     subprocess.run([adb_path, "-s", device_ip, "pull", f"/sdcard/{recording_file}", f"./{recording_file}"])
 
-def send_slack_file(file_path, title):
-    if not os.path.exists(file_path):
-        print(f"파일 없음: {file_path}")
-        return
-    try:
-        with open(file_path, "rb") as f:
-            client.files_upload_v2(
-                channel=CHANNEL_ID,
-                file=f,
-                filename=os.path.basename(file_path),
-                title=title
-            )
-        print(f"Slack 업로드 완료: {file_path}")
-    except SlackApiError as e:
-        print(f"Slack 업로드 실패: {e.response['error']}")
+def notify_file(file_path, title=None):
+    print(f"[notify skipped] file={file_path} title={title}")
+
+
 
 def log_to_file(log_lines):
     with open(log_file, "a", encoding="utf-8") as f:
@@ -174,8 +159,8 @@ def monitor_logs():
             stop_screen_recording()
 
         log_to_file(log_buffer)
-        send_slack_file(log_file, "광고 로그 텍스트")
-        send_slack_file(recording_file, "광고 녹화 영상")
+        notify_file(log_file, "광고 로그 텍스트")
+        notify_file(recording_file, "광고 녹화 영상")
 
         try:
             result_msg = "*PASS* - ImpressionLog / impressionTime / POST / 200 / impression log size 감지 완료" if len(detected_keywords) == len(required_keywords) else "*FAIL* - 감지 실패된 키워드 있음 ❌"
@@ -183,8 +168,6 @@ def monitor_logs():
                 channel=CHANNEL_ID,
                 text=result_msg
             )
-        except SlackApiError as e:
-            print(f"Slack 메시지 전송 실패: {e.response['error']}")
 
         process.terminate()
 

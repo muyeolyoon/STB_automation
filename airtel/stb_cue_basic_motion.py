@@ -2,14 +2,11 @@ import os, sys
 import subprocess
 import time
 from datetime import datetime
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
 
 # 내부 모듈 경로 추가
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from component.setting import AirtelSetting, Slack
+from component.setting import AirtelSetting
 
-client = WebClient(token=Slack.SLACK_BOT_TOKEN)
 
 action_sequence = ["default", "channel_updown", "sleep"]
 
@@ -19,11 +16,10 @@ def current_time_str():
 def date_check():
     return datetime.now().strftime("%Y%m%d")
 
-def send_slack_message(message):
-    try:
-        client.chat_postMessage(channel=Slack.CHANNEL_ID, text=message)
-    except SlackApiError as e:
-        print(f"Slack 메시지 실패: {e.response['error']}")
+def notify(message):
+    print(f"[notify] {message}")
+
+
 
 class Recorder:
     @staticmethod
@@ -41,23 +37,12 @@ class Recorder:
         time.sleep(2)
         subprocess.run([AirtelSetting.adb_path, "-s", device_ip, "pull", f"/sdcard/{output_path}", output_path])
 
-class SlackReporter:
+class LocalNotifier:
     @staticmethod
-    def send_file(file_path, title):
-        if not os.path.exists(file_path):
-            print(f"[SlackReporter] 파일 없음: {file_path}")
-            return
-        try:
-            with open(file_path, "rb") as f:
-                client.files_upload_v2(
-                    channel=Slack.CHANNEL_ID,
-                    file=f,
-                    filename=os.path.basename(file_path),
-                    title=title
-                )
-            print(f"[SlackReporter] Slack 업로드 완료: {file_path}")
-        except SlackApiError as e:
-            print(f"[SlackReporter] Slack 업로드 실패: {e.response['error']}")
+    def send_file(file_path, title=None):
+        print(f"[notify skipped] file={file_path} title={title}")
+
+
 
 class PostAdAction:
     @staticmethod
@@ -97,8 +82,8 @@ def monitor_ad_and_execute(action_type):
                 time.sleep(15)  # 광고 일부 녹화
                 PostAdAction.execute(device_ip, action_type)
                 # Recorder.stop(device_ip, recording_file)
-                SlackReporter.send_file(recording_file, title=f"{action_type} 광고 녹화")
-                send_slack_message(f"[완료] '{action_type}' 동작이 광고 감지 후 실행되었습니다.")
+                LocalNotifier.send_file(recording_file, title=f"{action_type} 광고 녹화")
+                notify(f"[완료] '{action_type}' 동작이 광고 감지 후 실행되었습니다.")
                 return  # 한 번만 실행
             if time.time() - start_time > 300:
                 print(f"[{current_time_str()}] 5분 내 감지 실패. 다음 액션으로 넘어감.")

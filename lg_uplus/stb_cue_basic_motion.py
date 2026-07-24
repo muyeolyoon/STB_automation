@@ -7,14 +7,11 @@ from datetime import datetime, timedelta
 import threading
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
-from component.setting import Setting, Slack
+from component.setting import Setting
 from component.obs_recorder import OBSRecorder
 
 # 기본 설정값
 LOG_DIR = "cue_basic_motion_log"
-client = WebClient(token=Slack.SLACK_BOT_TOKEN)
 action_sequence = [
     "default" ,"option_channel_list" ,"search","home","channel_updown","sleep"
 ]
@@ -24,14 +21,11 @@ CHANNEL_CHANGE_RE = re.compile(
 
 STATE_POST_RE = re.compile(r"POST .*?/v3/device/state-logs")
 STATE_200_RE  = re.compile(r"200 .*?/v3/device/state-logs")
-slack_client = WebClient(token=Slack.SLACK_BOT_TOKEN)
 
-def send_slack_message(message):
-    try:
-        slack_client.chat_postMessage(channel=Slack.CHANNEL_ID, text=message)
-    except SlackApiError as e:
-        print(f"Slack 메시지 실패: {e.response['error']}")
-        
+def notify(message):
+    print(f"[notify] {message}")
+
+
 
 class ADBLogSaver:
     def __init__(self, output_path, filters=None):
@@ -64,23 +58,12 @@ class ADBLogSaver:
                 print(f"에러 발생: {e}")
                 process.terminate()
 
-class SlackReporter:
+class LocalNotifier:
     @staticmethod
-    def send_file(file_path, title):
-        if not os.path.exists(file_path):
-            print(f"파일 없음: {file_path}")
-            return
-        try:
-            with open(file_path, "rb") as f:
-                client.files_upload_v2(
-                    channel=Slack.CHANNEL_ID,
-                    file=f,
-                    filename=os.path.basename(file_path),
-                    title=title
-                )
-            print(f"Slack 업로드 완료: {file_path}")
-        except SlackApiError as e:
-            print(f"Slack 업로드 실패: {e.response['error']}")
+    def send_file(file_path, title=None):
+        print(f"[notify skipped] file={file_path} title={title}")
+
+
 
 class PostAdAction:
 
@@ -126,7 +109,7 @@ class PostAdAction:
             subprocess.run([Setting.adb_path, "-s", device_ip, "shell", "input", "keyevent", str(key)])
             time.sleep(3)
 
-        # channel_updown 액션에 대해 state 검증 및 Slack 보고 추가
+        # channel_updown 액션에 대해 state 검증 및 결과 보고 추가
         if action_type == "channel_updown":
             verified, info = PostAdAction._verify_channel_switch(device_ip)
             msg01 = (
@@ -134,9 +117,9 @@ class PostAdAction:
                 if verified else
                 "채널 변경 또는 state 확인 실패"
             )
-            send_slack_message(msg01)
+            notify(msg01)
 
-        # channel_updown 액션에 대해 state 검증 및 Slack 보고 추가
+        # channel_updown 액션에 대해 state 검증 및 결과 보고 추가
         if action_type == "home":
             verified, info = PostAdAction._verify_channel_switch(device_ip)
             msg02 = (
@@ -144,7 +127,7 @@ class PostAdAction:
                 if verified else
                 "앱 진입 또는 state 확인 실패"
             )
-            send_slack_message(msg02)
+            notify(msg02)
 
 
 def get_unique_filename(directory, base_filename):
@@ -283,9 +266,9 @@ def main():
     recorder.stop_recording()  # 녹화 종료
     time.sleep(60)
         
-    print("모든 광고 감시 완료. 로그 파일을 Slack으로 전송합니다.")
-    SlackReporter.send_file(output_path, title="광고 모니터링 로그 파일")
+    print("모든 광고 감시 완료. 로그 파일을 로컬로 전송합니다.")
+    LocalNotifier.send_file(output_path, title="광고 모니터링 로그 파일")
     obs_video_path = os.path.join("G:/공유 드라이브/02.기술본부/30. QA/11. 셋탑 QA/U+/test", video_filename)
-    SlackReporter.send_file(obs_video_path, f"OBS 녹화 영상: {video_filename}")
+    LocalNotifier.send_file(obs_video_path, f"OBS 녹화 영상: {video_filename}")
 if __name__ == "__main__":
     main()

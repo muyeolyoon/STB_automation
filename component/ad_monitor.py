@@ -3,7 +3,6 @@
 import subprocess
 import time
 from datetime import datetime
-from slack_reporter import SlackReporter
 from setting import DEVICE_IP
 class AdMonitor:
     def __init__(self, channel_name, channel_number):
@@ -31,7 +30,6 @@ class AdMonitor:
                     self.start_recording()
                     time.sleep(20)  # 20초간 녹화
                     self.stop_recording()
-                    SlackReporter.send_file(self.recording_file, f"광고 녹화 - {self.channel_name}")
                     break
         except KeyboardInterrupt:
             print("사용자 중단")

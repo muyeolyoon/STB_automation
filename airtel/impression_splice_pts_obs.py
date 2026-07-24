@@ -7,13 +7,10 @@ from datetime import datetime, timedelta
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import re
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
-from component.setting import SkbSetting, Slack
+from component.setting import SkbSetting
 from component.obs_recorder import OBSRecorder
 
 # 슬랙 설정
-slack_client = WebClient(token=Slack.SLACK_BOT_TOKEN)
 
 # POST 요청 설정
 url = "http://am-device-app-prod2.ap-northeast-1.elasticbeanstalk.com/v3/devices/commands"
@@ -34,24 +31,18 @@ def send_post_request():
         response.raise_for_status()
         return BODY["deviceIds"][0]
     except requests.exceptions.RequestException as e:
-        send_slack_message(f"[오류] POST 요청 실패: {e}")
+        notify(f"[오류] POST 요청 실패: {e}")
         exit()
 
-def send_slack_message(message):
-    try:
-        slack_client.chat_postMessage(channel=Slack.CHANNEL_ID, text=message)
-    except SlackApiError as e:
-        print(f"Slack 메시지 실패: {e.response['error']}")
+def notify(message):
+    print(f"[notify] {message}")
 
-def send_slack_file(file_path, title):
-    try:
-        slack_client.files_upload_v2(
-            channel=Slack.CHANNEL_ID,
-            file=file_path,
-            title=title
-        )
-    except SlackApiError as e:
-        print(f"Slack 파일 업로드 실패: {e.response['error']}")
+
+
+def notify_file(file_path, title=None):
+    print(f"[notify skipped] file={file_path} title={title}")
+
+
 
 def switch_channel(channel_number):
     keyevent_map = {str(i): 7 + i for i in range(10)}
@@ -85,7 +76,7 @@ def load_ad_schedule():
         from component.schedule_loader import load_ad_schedule as _load_schedule_rows
         return _load_schedule_rows(AirtelSetting.SERVICE_ACCOUNT_PATH, section="skb")
     except Exception as e:
-        send_slack_message(f"[오류] 광고 스케줄 로드 실패: {e}")
+        notify(f"[오류] 광고 스케줄 로드 실패: {e}")
         exit()
 
 def parse_ads_end_line(lines):
@@ -183,7 +174,7 @@ def monitor_ads(device_id, ad_schedule):
 
             # 60초 이내 receive cue 미감지 시
             if not found_receive_cue and (time.time() - cue_check_start_time) > 90:
-                send_slack_message(f"[스킵] {channel_name}({channel}) 채널에서 90초 이내 receive cue 미감지. 다음 채널로 이동합니다.")
+                notify(f"[스킵] {channel_name}({channel}) 채널에서 90초 이내 receive cue 미감지. 다음 채널로 이동합니다.")
                 break  # 현재 채널 감시 실패 → 루프 끝내고 다음 채널로 이동
 
         proc.terminate()
@@ -218,7 +209,7 @@ def monitor_ads(device_id, ad_schedule):
         with open(log_file_path, "w", encoding="utf-8") as f:
             f.write("\n".join(impression_logs + splice_lines + splice_results))
 
-        send_slack_file(log_file_path, "Impression Log")
+        notify_file(log_file_path, "Impression Log")
 
         summary = (
             f"[완료] 광고 감시 결과\n"
@@ -231,7 +222,7 @@ def monitor_ads(device_id, ad_schedule):
             f"- ad-play will end in :\n{ads_end_report if ads_end_report else '(해당 없음)'}"
         )
 
-        send_slack_message(summary)
+        notify(summary)
         return  # 첫 성공 시 루프 종료
 
 
@@ -250,7 +241,7 @@ if __name__ == "__main__":
     device_id = SkbSetting.device_id
     schedule = load_ad_schedule()
     if not schedule:
-        send_slack_message("[경고] 광고 스케줄 없음")
+        notify("[경고] 광고 스케줄 없음")
         exit()
     monitor_ads(device_id, schedule)
     recorder.stop_recording()  # 녹화 종료

@@ -7,42 +7,22 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 import json
 from datetime import datetime
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
-from component.setting import SkbSetting, Slack
+from component.setting import SkbSetting
 
 timestamp = datetime.now().strftime("%y%m%d%H%M")
 filtered_log_file = f"AddrAD_{timestamp}.log"
 
-client = WebClient(token=Slack.SLACK_BOT_TOKEN)
 
 
-def send_slack_file(file_path, title):
-    if not os.path.exists(file_path):
-        print(f"파일 없음: {file_path}")
-        return
-    try:
-        with open(file_path, "rb") as f:
-            client.files_upload_v2(
-                channel=Slack.CHANNEL_ID,
-                file=f,
-                filename=os.path.basename(file_path),
-                title=title
-            )
-        print(f"Slack 업로드 완료: {file_path}")
-    except SlackApiError as e:
-        print(f"Slack 업로드 실패: {e.response['error']}")
+def notify_file(file_path, title=None):
+    print(f"[notify skipped] file={file_path} title={title}")
 
-def send_slack_message(text):
-    payload = {"text": text}
-    try:
-        response = requests.post(Slack.SLACK_WEBHOOK_URL, json=payload)
-        if response.status_code == 200:
-            print("Slack 전송 성공")
-        else:
-            print(f"Slack 전송 실패: {response.status_code}, {response.text}")
-    except Exception as e:
-        print(f"Slack 오류: {e}")
+
+
+def notify(message):
+    print(f"[notify] {message}")
+
+
 
 def start_log_capture():
     global log_proc
@@ -84,9 +64,9 @@ def stop_log_capture():
         log_proc.wait()
         time.sleep(2)
         if os.path.exists(filtered_log_file) and os.path.getsize(filtered_log_file) > 10:
-            send_slack_file(filtered_log_file, "AddrAD 필터 로그")
+            notify_file(filtered_log_file, "AddrAD 필터 로그")
         else:
-            print("유효한 AddrAD 로그가 없어 Slack 전송 생략")
+            print("유효한 AddrAD 로그가 없어 알림 생략")
     else:
         print("로그 수집 프로세스가 존재하지 않음")
 
@@ -177,13 +157,13 @@ def check_crc_log():
             if not found_try_count:
                 if re.search(r'download try count:\s*3', line):
                     found_try_count = True
-                    send_slack_message("[1단계] 'download try count: 3' 감지됨")
+                    notify("[1단계] 'download try count: 3' 감지됨")
             else:
                 crc_match = re.search(r'but valid crc32:\s*(\d+)', line)
                 if crc_match:
                     found_crc_log = True
                     crc_value = crc_match.group(1)
-                    send_slack_message(f"[2단계] CRC 로그 감지됨, CRC: {crc_value}")
+                    notify(f"[2단계] CRC 로그 감지됨, CRC: {crc_value}")
                     break
 
     except Exception as e:
@@ -216,7 +196,7 @@ def main():
     else:
         message = "[STB CRC 결과] 다운로드 실패 소재 없음"
 
-    send_slack_message(message)
+    notify(message)
     print("모든 동작 완료. 로그 수집 종료 및 저장")
     time.sleep(5)
     stop_log_capture()

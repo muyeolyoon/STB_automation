@@ -10,7 +10,3 @@ class Setting:
     sheet_tab_name = "250429 모니터링"
     device_ip = "192.168.10.8:5555"
     device_id ="47051029"
-class Slack:
-    SLACK_BOT_TOKEN = os.environ.get("SLACK_BOT_TOKEN", "")  # Bot User OAuth Token
-    CHANNEL_ID = "C08KBRUUVSS"  # Slack 채널 ID
-    SLACK_WEBHOOK_URL = os.environ.get("SLACK_WEBHOOK_URL", "")

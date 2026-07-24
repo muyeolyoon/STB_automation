@@ -39,12 +39,8 @@ cd <this-repo>
 .\my.yoon_test\run_default_behavior.ps1
 ```
 
-시크릿은 커밋하지 않음. Slack은 env:
-
-- `SLACK_BOT_TOKEN`
-- `SLACK_WEBHOOK_URL`
-
-`service_account.json`은 로컬에만 두고 경로를 맞춤.
+시크릿은 커밋하지 않음. `service_account.json`은 로컬에만 두고 경로를 맞춤.  
+알림은 Slack을 쓰지 않음(콘솔/`[notify]` print만).
 
 ## 구조 정리 방향 (아직 안 함 / 의도적)
 
