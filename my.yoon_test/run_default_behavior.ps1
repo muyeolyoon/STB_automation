@@ -28,7 +28,8 @@ $env:PYTHONIOENCODING = "utf-8"
 # SKIP_REBOOT=0       — 시작 시 재부팅 1회 + Firmware/SDK/Agent 버전 확인
 #   ※ .py 직접 실행 시 SKIP_REBOOT 미설정이면 대화형으로 y/N 물어봄 (N=스킵 기본)
 # local API endpoint (구글/mock): http://{STB_LOCAL_API_HOST}/{모델명}
-#   대화형: y → PC 호스트 + 기기별 모델명(UHD3/UHD4K…)
+#   STB_LOCAL_API_HOST 미설정 시 ipconfig로 PC LAN IP 자동 감지
+#   대화형: y → PC 호스트(자동값) + 기기별 모델명(UHD3/UHD4K…)
 #   비대화형 예:
 #     $env:APPLY_LOCAL_API_ENDPOINT="1"; $env:STB_LOCAL_API_MODEL="UHD3"
 #     $env:STB_API_ENDPOINT="http://192.168.10.150/UHD3"

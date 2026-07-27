@@ -21,7 +21,7 @@
      · receiveCue / ProgramProviderChannel … kid=true
      · KidWatermarkManager.buildWaterMark — isKid: true
      · changed content uri: …/kid_watermark.png
-     · PASS: 위 logcat + 광고 재생 중 ADB "광고 방송" OCR (5초 간격 최대 24회≈2분, 1회 검출 시 OK)
+     · PASS: 위 logcat + 광고 재생 중 ADB "광고 방송" OCR (5초 간격 최대 24장 캡처 후 일괄 OCR, 1회 검출 시 OK)
 
 광고 재생 logcat 흐름 (cue duration 기준, 다광고 시 단계·impression 횟수 반복):
   1. CueManager.register cue (AddrAD, duration=…)
@@ -71,6 +71,7 @@ from component.google_ad_tracker import (
 )
 from component.adb_capture import (
     adb_capture_path,
+    analyze_phrase_on_image_path,
     capture_png_via_adb,
     check_phrase_on_device,
 )
@@ -79,6 +80,7 @@ from component.save_logs import (
     print_impression_log_counts,
     stop_all_device_logs,
 )
+from component.local_api_host import detect_local_api_host
 
 # 편성표: TV 타겟 지상 채널 큐톤 시간표 (Drive Excel)
 # https://docs.google.com/spreadsheets/d/1fGc1yW9gBoHhJSo57E81FIAeAhNQz2ol/
@@ -143,7 +145,7 @@ AD_PLAYBACK_WAIT_TIMEOUT_SEC = 200
 AD_PLAYBACK_STATUS_INTERVAL_SEC = 30
 DEFAULT_EXPECTED_IMPRESSIONS = 1
 AD_BROADCAST_UI_TEXT = "광고 방송"
-# 키즈 '광고 방송' OCR: play 후 5초 간격 캡처 — 1회 검출 시 PASS (기본 약 2분간)
+# 키즈 '광고 방송': play~stop 동안 빠른 캡처(기본 5초×24) → 종료 후 일괄 OCR
 AD_BROADCAST_UI_CAPTURE_INTERVAL_SEC = float(
     os.environ.get("AD_BROADCAST_UI_CAPTURE_INTERVAL_SEC", "5")
 )
@@ -242,6 +244,8 @@ SLOT_AD_START_TIMEOUT_SEC = int(os.environ.get("SLOT_AD_START_TIMEOUT_SEC", "90"
 SLOT_AD_START_STATUS_INTERVAL_SEC = 20
 # (레거시) 예전 3분 리드 우선 — 현재는 :50~:59 시계 기준 무조건 우선으로 대체
 KIDS_PRIORITY_MAX_LEAD_SEC = int(os.environ.get("KIDS_PRIORITY_MAX_LEAD_SEC", "180"))
+# 6번만 남고 키즈까지 대기할 때: 전환 N초 전까지 일반 편성으로 중간 재확인
+KIDS_WAIT_FILLIN_LEAD_SEC = int(os.environ.get("KIDS_WAIT_FILLIN_LEAD_SEC", "120"))
 KIDS_WATERMARK_WAIT_SEC = 90
 # 키즈 워터마크 단계 라벨 (터미널·요약용)
 KIDS_WATERMARK_PHASE_LABELS = {
@@ -288,6 +292,8 @@ def _env_truthy(name: str, default: bool = False) -> bool:
 # SKIP_REBOOT=0 일 때만 시작 재부팅 + 버전 확인 (SKIP_REBOOT=1 은 버전도 스킵)
 # VERSION_REBOOT_ON_MISS=1: SKIP_REBOOT=0 경로에서 SDK/Agent 미확인 시 재부팅 1회
 VERSION_REBOOT_ON_MISS = _env_truthy("VERSION_REBOOT_ON_MISS")
+# 6번만 남았을 때 키즈 대기 중 일반 편성 fill-in (기본 ON)
+KIDS_WAIT_FILLIN_ENABLED = _env_truthy("KIDS_WAIT_FILLIN", default=True)
 
 
 _run_checklist = {
@@ -361,14 +367,23 @@ CHECK2_LOG_LOOKBACK_SEC = int(os.environ.get("CHECK2_LOG_LOOKBACK_SEC", "180"))
 NOT_LINEAR_TV_STATE_NEEDLE = "not linear tv state"
 # SDK: 광고 소재 미준비 — AD_SYNC 브로드캐스트로 동기화
 NOT_READY_TO_PLAY_AD_NEEDLE = "not yet ready to play target ad"
+# AD_SYNC 결과: "== target ads sync finished: ready=false, status=ERROR"
+AD_SYNC_FINISHED_MARK = "target ads sync finished"
 AD_SYNC_BROADCAST_ACTION = "tv.anypoint.sdk.AD_SYNC"
 AD_SYNC_LGU_PACKAGE = os.environ.get(
     "AD_SYNC_PACKAGE", "tv.anypoint.uplus.tvg.app"
 ).strip()
 AD_SYNC_RECOVERY_COOLDOWN_SEC = int(os.environ.get("AD_SYNC_RECOVERY_COOLDOWN_SEC", "90"))
+AD_SYNC_ERROR_NOTIFY_COOLDOWN_SEC = int(
+    os.environ.get("AD_SYNC_ERROR_NOTIFY_COOLDOWN_SEC", "120")
+)
+# 미준비 보류 판단용: 최근 not-ready 시각 유지 창 (슬롯 시작 시 clear)
+AD_NOT_READY_DEFER_WINDOW_SEC = int(
+    os.environ.get("AD_NOT_READY_DEFER_WINDOW_SEC", "180")
+)
 # local(PC) API: http://{host}/{model}  — 모델명은 셋탑 종류별 (UHD3, UHD4K 등)
 CHANGE_TEST_PROPERTY_ACTION = "tv.anypoint.agent.app.CHANGE_TEST_PROPERTY"
-DEFAULT_LOCAL_API_HOST = os.environ.get("STB_LOCAL_API_HOST", "192.168.10.150").strip()
+# STB_LOCAL_API_HOST 미설정 시 ipconfig 등으로 자동 감지 (get_default_local_api_host)
 _pending_api_endpoints = {}  # device_ip -> endpoint URL
 API_ENDPOINT_APPLY_SETTLE_SEC = float(
     os.environ.get("API_ENDPOINT_APPLY_SETTLE_SEC", "3")
@@ -421,6 +436,11 @@ _non_linear_tv_recovery_at = {}
 _non_linear_tv_recovery_lock = threading.Lock()
 _ad_sync_recovery_at = {}
 _ad_sync_recovery_lock = threading.Lock()
+_ad_sync_error_notify_at = {}
+_ad_sync_error_notify_lock = threading.Lock()
+# device -> last not-ready timestamp (체크 보류용; AD_SYNC 쿨다운과 별개)
+_recent_ad_not_ready_at = {}
+_recent_ad_not_ready_lock = threading.Lock()
 # 메인 루프·비선형 복구 스레드가 동시에 키패드를내면 ch25→5, 121→21 등으로 깨짐
 _channel_switch_lock = threading.Lock()
 # 채널 전환 중 not linear 복구 시 stale tracker 대신 이 목표 채널 사용
@@ -738,6 +758,15 @@ def _bump_check2_attempt() -> tuple[int, int, bool]:
     return _check2_bonus_used, CHECK2_BONUS_MAX_ATTEMPTS, True
 
 
+def _unbump_check2_attempt(was_bonus: bool) -> None:
+    """체크 2 미성립(미준비 보류 등) 시 시도 횟수 복원."""
+    global _check2_bonus_used
+    if was_bonus:
+        _check2_bonus_used = max(0, _check2_bonus_used - 1)
+    else:
+        _unbump_check_attempt("ad_playback")
+
+
 def _check2_playtime_ok(total_ms: int, expected_ms: int) -> bool:
     """체크 2: playTime 합 ∈ [cue−2초, cue] (cue 초과는 없음)."""
     if expected_ms <= 0:
@@ -837,10 +866,13 @@ def _should_force_kids_prime_priority(now=None) -> bool:
 
 
 def _skip_non_kids_for_check6(channel_number) -> bool:
-    """6번만 남았거나 prime 구간이면 일반 채널 슬롯을 건너뜀."""
+    """:50~:59 키즈 강제 구간에서만 일반 채널 스킵.
+
+    6번만 남은 대기 중에는 일반 편성 fill-in(재확인 모니터링)을 허용한다.
+    """
     if kids_check6_passed() or is_kids_channel(channel_number):
         return False
-    return _should_force_kids_prime_priority() or _only_check6_pending()
+    return _should_force_kids_prime_priority()
 
 
 def _describe_next_check_action(channel_number):
@@ -851,9 +883,11 @@ def _describe_next_check_action(channel_number):
         return "편성 모니터링(내부·구글)"
     if is_kids_channel(channel_number) and not kids_check6_passed():
         return "6 키즈 logcat + 광고방송 OCR"
-    if not kids_check6_passed() and (
-        _should_force_kids_prime_priority() or _only_check6_pending()
-    ):
+    if not kids_check6_passed() and _only_check6_pending():
+        if _should_force_kids_prime_priority():
+            return "6 키즈 prime 대기 (:50~:59)"
+        return "6 키즈 대기 중 — 중간 편성 재확인(모니터링)"
+    if not kids_check6_passed() and _should_force_kids_prime_priority():
         return "6 키즈 prime 대기 (:50~:59)"
     if needs_check_5():
         return (
@@ -1171,6 +1205,14 @@ def _prompt_skip_reboot_if_unset():
         print("  → 재부팅·버전 확인 스킵 (편성 모니터링만)")
 
 
+def get_default_local_api_host(device_ips=None) -> str:
+    """STB_LOCAL_API_HOST 또는 ipconfig 자동 감지 (STB와 같은 /24 선호)."""
+    peer = None
+    if device_ips:
+        peer = str(device_ips[0]).strip()
+    return detect_local_api_host(prefer_peer=peer)
+
+
 def build_local_api_endpoint(host: str, model: str) -> str:
     """http://{host}/{model} 형태. host에 scheme 없으면 http:// 붙임."""
     host = (host or "").strip().rstrip("/")
@@ -1191,10 +1233,14 @@ def _api_endpoints_from_env(device_ips) -> dict | None:
     full = os.environ.get("STB_API_ENDPOINT", "").strip().rstrip("/")
     if full:
         return {d: full for d in device_ips}
-    host = os.environ.get("STB_LOCAL_API_HOST", "").strip() or DEFAULT_LOCAL_API_HOST
+    host = os.environ.get("STB_LOCAL_API_HOST", "").strip()
+    if not host:
+        host = get_default_local_api_host(device_ips)
     model = os.environ.get("STB_LOCAL_API_MODEL", "").strip()
     if _env_truthy("APPLY_LOCAL_API_ENDPOINT") and model:
-        return {d: build_local_api_endpoint(host, model) for d in device_ips}
+        urls = {d: build_local_api_endpoint(host, model) for d in device_ips}
+        print(f"API endpoint host={host} (STB_LOCAL_API_HOST 또는 ipconfig 자동)")
+        return urls
     return None
 
 
@@ -1203,7 +1249,7 @@ def prompt_local_api_endpoints(device_ips) -> dict:
 
     - STB_API_ENDPOINT / APPLY_LOCAL_API_ENDPOINT+MODEL 이면 비대화형
     - APPLY_LOCAL_API_ENDPOINT=0 이면 스킵
-    - 그 외: y/N → PC 호스트 + 기기별 모델명
+    - 그 외: y/N → PC 호스트(기본=ipconfig 자동) + 기기별 모델명
     """
     resolved = _api_endpoints_from_env(device_ips)
     if resolved is not None:
@@ -1221,7 +1267,8 @@ def prompt_local_api_endpoints(device_ips) -> dict:
         print("  → endpoint 변경 안 함")
         return {}
 
-    default_host = DEFAULT_LOCAL_API_HOST or "192.168.10.150"
+    default_host = get_default_local_api_host(device_ips)
+    print(f"  PC IP 자동감지(ipconfig): {default_host}")
     host = input(
         f"PC API 호스트 (IP 또는 http://IP) [{default_host}]: "
     ).strip() or default_host
@@ -1380,6 +1427,7 @@ def clear_slot_watches(devices):
         for device in devices:
             _active_kids_watermark_trackers.pop(device, None)
     clear_google_ad_watch(devices)
+    _clear_ad_not_ready_seen(devices)
 
 
 def clear_kids_watermark_pending(devices, channel_number):
@@ -2194,6 +2242,99 @@ def _check5_tracker_list_ready(devices) -> bool:
     return False
 
 
+def _mark_ad_not_ready_seen(device) -> None:
+    with _recent_ad_not_ready_lock:
+        _recent_ad_not_ready_at[device] = time.time()
+
+
+def _clear_ad_not_ready_seen(devices) -> None:
+    with _recent_ad_not_ready_lock:
+        for device in devices:
+            _recent_ad_not_ready_at.pop(device, None)
+
+
+def _ad_not_ready_seen(devices) -> bool:
+    """'not yet ready to play target ad' — tracker 또는 최근 전역 플래그."""
+    now = time.time()
+    for device in devices:
+        with _ad_tracker_lock:
+            tracker = _active_ad_trackers.get(device)
+        if tracker and getattr(tracker, "not_ready_to_play_seen", False):
+            return True
+        with _recent_ad_not_ready_lock:
+            ts = _recent_ad_not_ready_at.get(device)
+        if ts is not None and (now - ts) <= AD_NOT_READY_DEFER_WINDOW_SEC:
+            return True
+    return False
+
+
+def _request_ad_sync_recovery(device, *, snippet: str = "") -> bool:
+    """AD_SYNC 전송 (쿨다운 존중). True=전송, False=쿨다운 스킵."""
+    with _ad_sync_recovery_lock:
+        last = _ad_sync_recovery_at.get(device, 0)
+        elapsed = time.time() - last
+        if elapsed < AD_SYNC_RECOVERY_COOLDOWN_SEC:
+            term_print(
+                f"{current_time_str()} [{device}] [광고 미준비] AD_SYNC 쿨다운 "
+                f"({int(elapsed)}/{AD_SYNC_RECOVERY_COOLDOWN_SEC}초) — 스킵"
+            )
+            return False
+        _ad_sync_recovery_at[device] = time.time()
+
+    if snippet:
+        term_print(
+            f"{current_time_str()} [{device}] [광고 미준비] {snippet} → AD_SYNC 전송"
+        )
+    else:
+        term_print(
+            f"{current_time_str()} [{device}] [광고 미준비] AD_SYNC 전송"
+        )
+
+    def _run():
+        send_ad_sync_broadcast(device)
+
+    threading.Thread(target=_run, daemon=True).start()
+    return True
+
+
+def _defer_checklist_for_ad_not_ready(devices, result: dict, check_tag: str) -> dict:
+    """미준비면 PASS/FAIL 확정 금지 — AD_SYNC(쿨다운) 후 보류(시도 미차감용)."""
+    term_print(
+        f"{current_time_str()} [{check_tag}] 광고 미준비 "
+        f"('{NOT_READY_TO_PLAY_AD_NEEDLE}') — 보류, AD_SYNC 우선"
+    )
+    for device in devices:
+        _request_ad_sync_recovery(device)
+    result["ok"] = False
+    result["done"] = False
+    result["deferred"] = True
+    result["saw_not_ready"] = True
+    result["message"] = (
+        "광고 미준비(not yet ready) — AD_SYNC 후 보류 (다음 편성 재시도)"
+    )
+    return result
+
+
+def _log_defer_ad_not_ready(check_tag: str, devices) -> None:
+    """결과 dict 없이 보류만 로그·AD_SYNC (체크 2/6 슬롯 등)."""
+    term_print(
+        f"{current_time_str()} [{check_tag}] 광고 미준비 "
+        f"('{NOT_READY_TO_PLAY_AD_NEEDLE}') — 보류, AD_SYNC 우선"
+    )
+    for device in devices:
+        _request_ad_sync_recovery(device)
+
+
+def _check5_not_ready_seen(devices) -> bool:
+    """호환: register 구간 'not yet ready to play target ad'."""
+    return _ad_not_ready_seen(devices)
+
+
+def _check5_defer_for_ad_not_ready(devices, result: dict) -> dict:
+    """호환: 체크 5 미준비 보류."""
+    return _defer_checklist_for_ad_not_ready(devices, result, "체크 5")
+
+
 def _check5_register_deadline_epoch(ad_time_str: str) -> float:
     """register cue·이탈 시각을 정하지 못할 때 포기 시각 (편성 +N초)."""
     now = datetime.now()
@@ -2270,6 +2411,9 @@ def wait_until_player_play(devices, timeout_sec=CHECK4_PLAY_WAIT_TIMEOUT_SEC):
     while time.time() < deadline:
         if _player_play_seen(devices):
             return True, time.time()
+        # 미준비면 play 대기 소진하지 않고 조기 종료 → 호출측 보류
+        if _ad_not_ready_seen(devices):
+            return False, None
         if time.time() - last_preload >= 5:
             preload_ad_logcat_buffer(
                 devices, lookback_sec=CHECK5_LOG_LOOKBACK_SEC, max_lines=1500
@@ -2297,6 +2441,7 @@ def _google_tune_target(device):
 def start_google_ad_watch(devices, sub=None, channel_number=None):
     global _active_google_subtest
     _active_google_subtest = sub
+    _clear_ad_not_ready_seen(devices)
     with _google_tracker_lock:
         for device in devices:
             _active_google_trackers[device] = GoogleAdEventTracker()
@@ -2389,9 +2534,22 @@ def execute_test_google_ad(devices, row, escape_channel):
         term_print(f"  ✗ {result['message']}")
         return result
 
-    if not _wait_google_event(
-        devices, "STARTED", min(SLOT_AD_START_TIMEOUT_SEC, GOOGLE_AD_START_TIMEOUT_SEC)
-    ):
+    started_ok = False
+    start_deadline = time.time() + min(
+        SLOT_AD_START_TIMEOUT_SEC, GOOGLE_AD_START_TIMEOUT_SEC
+    )
+    while time.time() < start_deadline:
+        if _google_any_event(devices, "STARTED"):
+            started_ok = True
+            break
+        if _ad_not_ready_seen(devices):
+            _defer_checklist_for_ad_not_ready(devices, result, check_tag)
+            _unbump_check_attempt(_google_sub_attempt_key(sub))
+            clear_google_ad_watch(devices)
+            term_print(f"  ⏭ {result['message']}")
+            return result
+        time.sleep(0.3)
+    if not started_ok:
         result["message"] = (
             f"google adEvent STARTED 미감지 "
             f"({min(SLOT_AD_START_TIMEOUT_SEC, GOOGLE_AD_START_TIMEOUT_SEC)}초)"
@@ -2513,6 +2671,9 @@ def execute_test_leave_before_play(devices, row, escape_channel):
 
     이탈 시각 = min(register + CHECK5_LEAVE_AFTER_REGISTER_SEC,
                     scheduled_play - CHECK5_LEAVE_BEFORE_PLAY_SEC)
+
+    예외: register(편성 일치) 후 'not yet ready to play target ad' 이면
+    광고 자체가 못 나가므로 PASS로 치지 않고 AD_SYNC 후 보류(다음 편성 재시도).
     """
     channel_name = row["채널명"]
     channel_number = row["채널번호"]
@@ -2529,6 +2690,8 @@ def execute_test_leave_before_play(devices, row, escape_channel):
         "saw_register_cue": False,
         "saw_play": False,
         "saw_impression": False,
+        "saw_not_ready": False,
+        "deferred": False,
         "done": False,
         "message": "",
         "leave_at_label": leave_label,
@@ -2588,6 +2751,9 @@ def execute_test_leave_before_play(devices, row, escape_channel):
             last_preload = time.time()
         if _check5_tracker_list_ready(devices):
             result["saw_register_cue"] = True
+        if result["saw_register_cue"] and _check5_not_ready_seen(devices):
+            _check5_defer_for_ad_not_ready(devices, result)
+            break
         computed_leave = _check5_compute_leave_epoch(devices)
         if computed_leave is not None:
             if leave_at is None or computed_leave < leave_at:
@@ -2605,6 +2771,10 @@ def execute_test_leave_before_play(devices, row, escape_channel):
                 result["saw_play"] = True
                 term_print(f"{current_time_str()} [체크 5] ✗ play ==== 감지 (이탈 전)")
         if leave_at is not None and time.time() >= leave_at:
+            # 이탈 직전 한 번 더: 미준비면 PASS 경로로 가지 않음
+            if result["saw_register_cue"] and _check5_not_ready_seen(devices):
+                _check5_defer_for_ad_not_ready(devices, result)
+                break
             term_print(
                 f"{current_time_str()} [체크 5] {leave_label} → ch {escape_channel} 이동"
             )
@@ -2627,7 +2797,9 @@ def execute_test_leave_before_play(devices, row, escape_channel):
             last_status = time.time()
         time.sleep(CHECK5_LEAVE_POLL_SEC)
 
-    if left_channel:
+    if result.get("deferred"):
+        pass
+    elif left_channel:
         impression_at_leave = _impression_counts(devices)
         observe_sec = (
             CHECK5_POST_LEAVE_OBSERVE_SEC
@@ -2649,16 +2821,20 @@ def execute_test_leave_before_play(devices, row, escape_channel):
         _, total_ms = collect_impression_play_times(devices)
         if total_ms > 0:
             result["saw_impression"] = True
-        result["done"] = True
-        result["ok"] = not result["saw_play"] and not result["saw_impression"]
-        if result["ok"]:
-            result["message"] = (
-                f"{leave_label} 이탈, play/impression 없음 (기대 동작)"
-            )
-        elif result["saw_play"]:
-            result["message"] = "play ==== 감지 (미재생 기대)"
-        elif result["saw_impression"]:
-            result["message"] = "impression log 발생 (미재생 기대)"
+        # 이탈 후에도 미준비가 확인되면 '미재생 성공'으로 치지 않음
+        if _check5_not_ready_seen(devices):
+            _check5_defer_for_ad_not_ready(devices, result)
+        else:
+            result["done"] = True
+            result["ok"] = not result["saw_play"] and not result["saw_impression"]
+            if result["ok"]:
+                result["message"] = (
+                    f"{leave_label} 이탈, play/impression 없음 (기대 동작)"
+                )
+            elif result["saw_play"]:
+                result["message"] = "play ==== 감지 (미재생 기대)"
+            elif result["saw_impression"]:
+                result["message"] = "impression log 발생 (미재생 기대)"
     elif not result["message"]:
         if not result["saw_register_cue"]:
             result["message"] = (
@@ -2668,9 +2844,9 @@ def execute_test_leave_before_play(devices, row, escape_channel):
             result["message"] = f"{leave_label} 이탈 채널 전환 실패"
 
     _run_checklist["leave_before_play"] = result
-    mark = "✓" if result["ok"] else "✗"
+    mark = "⏭" if result.get("deferred") else ("✓" if result["ok"] else "✗")
     term_print(f"{current_time_str()} [체크 5] {mark} {result['message']}")
-    if result["saw_register_cue"]:
+    if result["saw_register_cue"] and not result.get("deferred"):
         term_print(f"  (참고: 편성 일치 register/load 로그 확인됨)")
     term_print(f"{'=' * 60}\n")
     print_checklist_progress(devices)
@@ -2761,6 +2937,7 @@ def execute_test_leave_during_ad(devices, row, escape_channel):
         "expected_playtime_ms": 0,
         "playtime_match": False,
         "done": False,
+        "deferred": False,
         "message": "",
     }
 
@@ -2819,6 +2996,12 @@ def execute_test_leave_during_ad(devices, row, escape_channel):
         devices, timeout_sec=SLOT_AD_START_TIMEOUT_SEC
     )
     if not play_ok:
+        if _ad_not_ready_seen(devices):
+            _defer_checklist_for_ad_not_ready(devices, result, "체크 4")
+            _run_checklist["leave_during_ad"] = result
+            clear_slot_watches(devices)
+            term_print(f"  ⏭ {result['message']}")
+            return result
         result["message"] = (
             f"play ==== 미감지 ({SLOT_AD_START_TIMEOUT_SEC}초 — 편성 스킵)"
         )
@@ -2922,8 +3105,10 @@ def _log_ui_capture_entry(entry, label=""):
         term_print(f"  캡처 저장: {entry['path']}")
     if entry.get("chat_path"):
         vis = entry.get("visibility_score")
+        same = entry.get("chat_path") == entry.get("path")
         term_print(
-            f"  Chat용(시인성 {vis}): {entry['chat_path']}"
+            f"  Chat 첨부({'전체화면' if same else '미리보기'}, 시인성 {vis}): "
+            f"{entry['chat_path']}"
             + (" ★" if entry.get("chat_preferred") else "")
         )
     elif entry.get("visibility_note"):
@@ -3012,10 +3197,61 @@ def try_verify_ad_broadcast_ui(channel_name, channel_number, devices=None):
     return entry
 
 
+def _capture_ad_broadcast_frame(device, tag: str) -> dict:
+    """재생 중 1장만 빠르게 저장 (OCR 없음). ADB 실패 시 OBS."""
+    adb_path = adb_capture_path(LOG_DIR, tag)
+    try:
+        path = capture_png_via_adb(device, adb_path)
+        return {"ok": True, "path": path, "capture_method": "adb", "message": "캡처 OK"}
+    except Exception as e:
+        adb_err = str(e)
+
+    if os.environ.get("AD_BROADCAST_OBS_FALLBACK", "1").strip().lower() in (
+        "0",
+        "false",
+        "no",
+        "off",
+    ):
+        return {
+            "ok": False,
+            "path": None,
+            "capture_method": "adb",
+            "message": f"ADB 캡처 실패: {adb_err}",
+        }
+
+    try:
+        from component.obs_capture import OBSScreenCapture, default_capture_path
+
+        obs = OBSScreenCapture(
+            host=os.environ.get("OBS_HOST", "127.0.0.1"),
+            port=int(os.environ.get("OBS_PORT", "4455")),
+            password=os.environ.get("OBS_PASSWORD", ""),
+        )
+        obs_path = default_capture_path(LOG_DIR, tag)
+        path = obs.capture_png(
+            obs_path, source_name=os.environ.get("OBS_SOURCE")
+        )
+        return {
+            "ok": True,
+            "path": path,
+            "capture_method": "obs",
+            "message": f"OBS 캡처 OK (ADB: {adb_err})",
+            "adb_message": adb_err,
+        }
+    except Exception as e:
+        return {
+            "ok": False,
+            "path": None,
+            "capture_method": "adb",
+            "message": f"ADB 캡처 실패: {adb_err}; OBS 실패: {e}",
+        }
+
+
 def verify_ad_broadcast_ui_burst(channel_name, channel_number, devices=None):
     """
-    play ==== 이후·광고 종료(stop) 전까지만 5초 간격 캡처·OCR (최대 ~120초).
-    흰 배경 오탐은 PASS로 치지 않음. 글씨 시인성 있는 1회 검출 시 즉시 PASS.
+    play ==== ~ stop 동안 빠른 캡처(기본 5초×24)만 먼저 모은 뒤,
+    광고 종료(또는 장수 도달) 후 저장된 프레임을 일괄 OCR.
+    흰 배경 오탐은 PASS로 치지 않음. 글씨 시인성 있는 1장 이상이면 PASS.
     Chat 첨부는 시인성 점수 최고인 *_chat.png 만 사용.
     """
     devices = devices or []
@@ -3031,9 +3267,8 @@ def verify_ad_broadcast_ui_burst(channel_name, channel_number, devices=None):
 
     term_print(
         f"\n{current_time_str()} [UI 캡처] ch {ch} "
-        f"'{AD_BROADCAST_UI_TEXT}' — play ==== ~ stop 구간만 "
-        f"{interval:.0f}초 간격 최대 {max_count}회 "
-        f"(글씨 보이는 장 검출 시 종료, Chat은 그중 최고 시인성)"
+        f"'{AD_BROADCAST_UI_TEXT}' — play====~stop 동안 "
+        f"{interval:.0f}초 간격 최대 {max_count}장 먼저 저장 → 이후 일괄 OCR"
     )
 
     play_deadline = time.time() + AD_BROADCAST_UI_PLAY_WAIT_SEC
@@ -3061,30 +3296,78 @@ def verify_ad_broadcast_ui_burst(channel_name, channel_number, devices=None):
         )
         return None
 
-    best = None
-    best_chat = None
+    # --- 1) 빠른 캡처만 ---
+    frames = []
     for attempt in range(1, max_count + 1):
         if _ad_playback_stopped(devices):
             term_print(
                 f"{current_time_str()} [UI 캡처] player stop 감지 — "
-                f"광고 종료, OCR 중단 ({attempt - 1}/{max_count}회까지)"
+                f"캡처 종료 ({len(frames)}/{max_count}장)"
             )
             break
         if not _ad_playback_started(devices) and attempt > 1:
             term_print(
-                f"{current_time_str()} [UI 캡처] play 상태 아님 — OCR 중단"
+                f"{current_time_str()} [UI 캡처] play 상태 아님 — "
+                f"캡처 종료 ({len(frames)}/{max_count}장)"
             )
             break
 
-        result = _check_ad_broadcast_phrase_with_fallback(devices[0], tag)
+        frame_tag = f"{tag}_{attempt:02d}"
+        cap = _capture_ad_broadcast_frame(devices[0], frame_tag)
+        if cap.get("ok") and cap.get("path"):
+            frames.append(
+                {
+                    "attempt": attempt,
+                    "path": cap["path"],
+                    "capture_method": cap.get("capture_method") or "adb",
+                }
+            )
+            term_print(
+                f"{current_time_str()} [UI 캡처] 저장 {attempt}/{max_count} "
+                f"({cap.get('capture_method')}) → {cap['path']}"
+            )
+        else:
+            term_print(
+                f"{current_time_str()} [UI 캡처] 저장 실패 {attempt}/{max_count}: "
+                f"{cap.get('message')}"
+            )
+
+        if attempt < max_count:
+            end_sleep = time.time() + interval
+            while time.time() < end_sleep:
+                if _ad_playback_stopped(devices):
+                    break
+                time.sleep(0.25)
+
+    if not frames:
+        term_print(
+            f"{current_time_str()} [UI 캡처] ✗ 광고 재생 구간 캡처 없음"
+        )
+        return None
+
+    # --- 2) 일괄 OCR ---
+    term_print(
+        f"{current_time_str()} [UI 캡처] 일괄 OCR 시작 — {len(frames)}장 "
+        f"'{AD_BROADCAST_UI_TEXT}' 비교"
+    )
+    best = None
+    best_chat = None
+    hit_count = 0
+    for frame in frames:
+        analyzed = analyze_phrase_on_image_path(
+            frame["path"],
+            AD_BROADCAST_UI_TEXT,
+            capture_method=frame.get("capture_method") or "file",
+            device=devices[0],
+        )
         entry = {
             "channel_name": channel_name,
             "channel_number": ch,
-            "attempt": attempt,
+            "attempt": frame["attempt"],
             "max_attempts": max_count,
-            **result,
+            "captured_count": len(frames),
+            **analyzed,
         }
-        # Chat 후보: 시인성 있는 chat_path 만
         if entry.get("chat_path") and entry.get("badge_visible"):
             score = float(entry.get("visibility_score") or 0.0)
             prev = float((best_chat or {}).get("visibility_score") or -1.0)
@@ -3094,39 +3377,31 @@ def verify_ad_broadcast_ui_burst(channel_name, channel_number, devices=None):
                 entry["chat_preferred"] = True
                 best_chat = entry
         _run_checklist["ad_broadcast_ui"].append(entry)
-        _log_ui_capture_entry(entry, label=f"{attempt}/{max_count}")
+        _log_ui_capture_entry(
+            entry, label=f"OCR {frame['attempt']}/{len(frames)}"
+        )
         visible_ok = bool(entry.get("ok") and entry.get("badge_visible"))
+        if visible_ok:
+            hit_count += 1
         if best is None or visible_ok:
             best = entry
-        if visible_ok:
-            term_print(
-                f"{current_time_str()} [UI 캡처] ✓ {attempt}회째 "
-                f"'{AD_BROADCAST_UI_TEXT}' 시인성 확인 "
-                f"(score={entry.get('visibility_score')}) — 종료"
-            )
-            break
-        if attempt < max_count:
-            end_sleep = time.time() + interval
-            while time.time() < end_sleep:
-                if _ad_playback_stopped(devices):
-                    break
-                time.sleep(0.25)
 
     if best_chat is not None and best is not None:
-        # Chat 첨부 우선순위: 시인성 최고 장
         best["chat_path"] = best_chat.get("chat_path")
         best["chat_preferred"] = True
         best["visibility_score"] = best_chat.get("visibility_score")
         best["badge_visible"] = True
 
-    if best is None:
+    if best is not None and best.get("ok") and best.get("badge_visible"):
         term_print(
-            f"{current_time_str()} [UI 캡처] ✗ 광고 재생 구간 캡처 없음"
+            f"{current_time_str()} [UI 캡처] ✓ '{AD_BROADCAST_UI_TEXT}' "
+            f"검출 {hit_count}/{len(frames)}장 "
+            f"(최고 score={best.get('visibility_score')})"
         )
-    elif not (best.get("ok") and best.get("badge_visible")):
+    else:
         term_print(
             f"{current_time_str()} [UI 캡처] ✗ 광고 재생 중 '{AD_BROADCAST_UI_TEXT}' "
-            f"미검출(또는 흰 배경만) — Chat 첨부 생략"
+            f"미검출(또는 흰 배경만) — {len(frames)}장 분석, Chat 첨부 생략"
         )
     return best
 
@@ -4083,13 +4358,68 @@ def _log_kids_priority_selected(next_row, next_time, *, mandatory=False):
     )
 
 
+def _log_kids_wait_fillin_selected(next_row, next_time, kids_time):
+    kids_label = (
+        kids_time.strftime("%H:%M:%S") if kids_time is not None else "(다음 prime 없음)"
+    )
+    term_print(
+        f"{current_time_str()} [키즈 대기/중간재확인] "
+        f"{next_row['채널명']}({normalize_channel_number(next_row['채널번호'])}) "
+        f"@ {next_row['광고편성 시간']} "
+        f"(키즈 prime {kids_label} 전까지 편성 모니터링)"
+    )
+
+
+def _pick_kids_wait_fillin_slot(
+    future_candidates, now, kids_next, actionable=None
+):
+    """
+    6번만 남고 키즈 전환까지 여유가 있으면 일반 편성으로 중간 재확인.
+    kids_next: (ad_dt, row) | (None, None)
+    """
+    if not KIDS_WAIT_FILLIN_ENABLED:
+        return None, None
+    kids_time = kids_next[0] if kids_next else None
+    if kids_time is not None:
+        kids_switch = kids_time - timedelta(seconds=30)
+        if (kids_switch - now).total_seconds() <= KIDS_WAIT_FILLIN_LEAD_SEC:
+            return None, None
+    else:
+        kids_switch = None
+
+    pools = []
+    if actionable:
+        pools.append(actionable)
+    pools.append(future_candidates)
+
+    seen = set()
+    for pool in pools:
+        for ad_dt, row in pool:
+            key = (
+                normalize_channel_number(row["채널번호"]),
+                row.get("광고편성 시간"),
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            if is_kids_channel(row["채널번호"]):
+                continue
+            switch_at = ad_dt - timedelta(seconds=30)
+            if kids_switch is not None and switch_at >= kids_switch:
+                continue
+            _log_kids_wait_fillin_selected(row, ad_dt, kids_time)
+            return ad_dt, row
+    return None, None
+
+
 def pick_next_ad_row(data, now):
     """다음 광고 row 선택.
 
     6번 미완료 시:
     - :50~:59(prime): 이번 시각대 남은 키즈 prime만 우선.
       이번 시간 슬롯이 더 없으면 2~5번용 일반 편성으로 진행.
-    - 그 외 + 6번만 남음: 다음 키즈 prime 편성까지 대기 (일반 모니터링 안 함).
+    - 그 외 + 6번만 남음: 키즈 prime까지 여유가 있으면 일반 편성으로
+      중간 재확인(모니터링), 임박하면 키즈로 전환.
     """
     if not kids_check6_passed():
         actionable = _collect_actionable_ad_candidates(data, now)
@@ -4109,12 +4439,20 @@ def pick_next_ad_row(data, now):
             # 이번 :50~:59 키즈 소진 → 일반 편성(2~5)으로 진행
 
         if _only_check6_pending():
+            future = _collect_future_ad_candidates(data, now)
             pool = kids_prime
             if not pool:
-                future = _collect_future_ad_candidates(data, now)
                 pool = _filter_kids_prime_candidates(future)
-            if pool:
-                next_time, next_row = pool[0]
+            kids_next = pool[0] if pool else (None, None)
+
+            fill_time, fill_row = _pick_kids_wait_fillin_slot(
+                future, now, kids_next, actionable=actionable
+            )
+            if fill_row is not None:
+                return fill_time, fill_row
+
+            if kids_next[0] is not None:
+                next_time, next_row = kids_next
                 _log_kids_priority_selected(
                     next_row, next_time, mandatory=False
                 )
@@ -4792,26 +5130,64 @@ def send_ad_sync_broadcast(device: str) -> bool:
 def _maybe_recover_ad_not_ready(device, line):
     if NOT_READY_TO_PLAY_AD_NEEDLE not in line.lower():
         return
-    with _ad_sync_recovery_lock:
-        last = _ad_sync_recovery_at.get(device, 0)
-        elapsed = time.time() - last
-        if elapsed < AD_SYNC_RECOVERY_COOLDOWN_SEC:
-            term_print(
-                f"{current_time_str()} [{device}] [광고 미준비] AD_SYNC 쿨다운 "
-                f"({int(elapsed)}/{AD_SYNC_RECOVERY_COOLDOWN_SEC}초) — 스킵"
-            )
-            return
-        _ad_sync_recovery_at[device] = time.time()
-
+    _mark_ad_not_ready_seen(device)
     snippet = line.strip()[:220]
-    term_print(
-        f"{current_time_str()} [{device}] [광고 미준비] {snippet} → AD_SYNC 전송"
+    _request_ad_sync_recovery(device, snippet=snippet)
+
+
+def _is_ad_sync_finished_error_line(line: str) -> bool:
+    """'target ads sync finished' + ready=false + status=ERROR."""
+    compact = re.sub(r"\s+", "", (line or "").lower())
+    return (
+        "targetadssyncfinished" in compact
+        and "ready=false" in compact
+        and "status=error" in compact
     )
 
-    def _run():
-        send_ad_sync_broadcast(device)
 
-    threading.Thread(target=_run, daemon=True).start()
+def _notify_ad_sync_finished_error(device, line):
+    """AD_SYNC 결과가 ERROR면 알림 + AD_SYNC 재전송."""
+    if not _is_ad_sync_finished_error_line(line):
+        return
+    with _ad_sync_error_notify_lock:
+        last = _ad_sync_error_notify_at.get(device, 0)
+        elapsed = time.time() - last
+        if elapsed < AD_SYNC_ERROR_NOTIFY_COOLDOWN_SEC:
+            return
+        _ad_sync_error_notify_at[device] = time.time()
+
+    snippet = (line or "").strip()[:220]
+    term_print(
+        f"{current_time_str()} [⚠ AD_SYNC ERROR] [{device}] "
+        f"ready=false, status=ERROR — {snippet} → AD_SYNC 재전송"
+    )
+    _record_critical_issue(device, "AD_SYNC ready=false ERROR", snippet)
+    # ERROR 면 한 번 더 동기화 시도 (90초 AD_SYNC 쿨다운 존중)
+    _request_ad_sync_recovery(device, snippet=snippet)
+
+    def _chat():
+        space = _resolve_google_chat_space()
+        if not space:
+            return
+        try:
+            from component.chat_notify import send_report
+
+            text = (
+                "⚠ AD_SYNC 실패 (ready=false, status=ERROR) — 재전송 시도\n"
+                f"device: {device}\n"
+                f"time: {current_time_str()}\n"
+                f"{snippet}"
+            )
+            send_report(space, text, [])
+            term_print(
+                f"{current_time_str()} [Google Chat] AD_SYNC ERROR 알림 전송 → {space}"
+            )
+        except Exception as e:
+            term_print(
+                f"{current_time_str()} [Google Chat] AD_SYNC ERROR 알림 실패: {e}"
+            )
+
+    threading.Thread(target=_chat, daemon=True).start()
 
 
 def read_last_tuned_channel_number(device) -> str | None:
@@ -5107,6 +5483,7 @@ class AdPlaybackTracker:
         self.register_cue_seen = False
         self.register_cue_at = None
         self.scheduled_play_at = None
+        self.not_ready_to_play_seen = False
         self.first_play_logcat_at = None
         self.last_stop_logcat_at = None
         self.program_channel_id = None
@@ -5173,6 +5550,9 @@ class AdPlaybackTracker:
         if not self.line_is_trusted(stripped):
             return
         lower = stripped.lower()
+
+        if NOT_READY_TO_PLAY_AD_NEEDLE in lower:
+            self.not_ready_to_play_seen = True
 
         if NOT_LINEAR_TV_STATE_NEEDLE in lower:
             _maybe_recover_non_linear_tv(self.device, stripped)
@@ -5440,6 +5820,7 @@ def start_ad_playback_watch(
         expected_catalog_ids = resolve_expected_catalog_ids(channel_name)
     else:
         expected_catalog_ids = set(expected_catalog_ids)
+    _clear_ad_not_ready_seen(devices)
     with _ad_tracker_lock:
         for device in devices:
             _active_ad_trackers[device] = AdPlaybackTracker(
@@ -5812,6 +6193,8 @@ def on_log_line_for_monitoring(device, line):
     _detect_critical_issue(device, line)
     if NOT_READY_TO_PLAY_AD_NEEDLE in lower:
         _maybe_recover_ad_not_ready(device, line)
+    if AD_SYNC_FINISHED_MARK in lower:
+        _notify_ad_sync_finished_error(device, line)
     if NOT_LINEAR_TV_STATE_NEEDLE in lower:
         _maybe_recover_non_linear_tv(device, line)
 
@@ -5878,6 +6261,10 @@ def wait_for_ad_playback(
     *,
     monitor_only=False,
 ):
+    """
+    광고 재생 완료 대기.
+    반환: True=성공, False=실패/타임아웃, "deferred"=미준비 보류(체크리스트 미확정).
+    """
     tag = "[모니터링] " if monitor_only else ""
     term_print(
         f"{current_time_str()} {tag}[광고 재생 확인] 대기 (최대 {timeout_sec}초, "
@@ -5902,6 +6289,14 @@ def wait_for_ad_playback(
         )
 
     while time.time() < deadline:
+        if (
+            not monitor_only
+            and _ad_not_ready_seen(devices)
+            and not _ad_playback_started(devices)
+        ):
+            _log_defer_ad_not_ready("체크 2", devices)
+            return "deferred"
+
         all_done = True
         for device in devices:
             with _ad_tracker_lock:
@@ -5932,6 +6327,13 @@ def wait_for_ad_playback(
         time.sleep(1)
 
     term_print(f"{current_time_str()} {tag}[광고 재생 확인] 타임아웃")
+    if (
+        not monitor_only
+        and _ad_not_ready_seen(devices)
+        and not _ad_playback_started(devices)
+    ):
+        _log_defer_ad_not_ready("체크 2", devices)
+        return "deferred"
     if monitor_only:
         eval_result = evaluate_internal_ad_playback(
             devices, expected_impressions, update_checklist=False
@@ -6357,6 +6759,12 @@ def monitor_and_switch_channels_with_data(data, devices, final_channels=None):
                     if not wait_for_slot_ad_start(
                         devices, channel_name, channel_number, ad_time_str
                     ):
+                        if _ad_not_ready_seen(devices):
+                            _log_defer_ad_not_ready("키즈", devices)
+                            clear_slot_watches(devices)
+                            clear_kids_watermark_pending(devices, channel_number)
+                            data.remove(next_row)
+                            continue
                         skip_slot_no_ad(
                             devices, channel_name, channel_number, ad_time_str
                         )
@@ -6372,6 +6780,14 @@ def monitor_and_switch_channels_with_data(data, devices, final_channels=None):
                     ui_ok = run_kids_check6_ui_verification(
                         devices, channel_name, channel_number
                     )
+                    if _ad_not_ready_seen(devices) and not _ad_playback_started(
+                        devices
+                    ):
+                        _log_defer_ad_not_ready("키즈", devices)
+                        clear_slot_watches(devices)
+                        clear_kids_watermark_pending(devices, channel_number)
+                        data.remove(next_row)
+                        continue
                     if not _ad_playback_started(devices) and ui_ok is False:
                         term_print(
                             f"{current_time_str()} [키즈] 광고 play 미감지 — "
@@ -6405,6 +6821,8 @@ def monitor_and_switch_channels_with_data(data, devices, final_channels=None):
                     if not result5.get("ok") and (
                         "register cue 미감지" in msg5
                         or msg5.startswith("유료가입")
+                        or result5.get("deferred")
+                        or "광고 미준비" in msg5
                     ):
                         attempt5 = _unbump_check_attempt("leave_before_play")
                         charged5 = False
@@ -6435,6 +6853,8 @@ def monitor_and_switch_channels_with_data(data, devices, final_channels=None):
                     if not result4.get("ok") and (
                         "채널 튜닝 실패" in msg4
                         or "play ==== 미감지" in msg4
+                        or result4.get("deferred")
+                        or "광고 미준비" in msg4
                         or msg4.startswith("유료가입")
                     ):
                         attempt4 = _unbump_check_attempt("leave_during_ad")
@@ -6500,16 +6920,27 @@ def monitor_and_switch_channels_with_data(data, devices, final_channels=None):
                     if not wait_for_slot_ad_start(
                         devices, channel_name, channel_number, ad_time_str
                     ):
+                        if _ad_not_ready_seen(devices):
+                            _log_defer_ad_not_ready("체크 2", devices)
+                            _unbump_check2_attempt(bonus2)
+                            clear_slot_watches(devices)
+                            data.remove(next_row)
+                            continue
                         skip_slot_no_ad(
                             devices, channel_name, channel_number, ad_time_str
                         )
                         data.remove(next_row)
                         continue
-                    wait_for_ad_playback(
+                    pb_result = wait_for_ad_playback(
                         devices,
                         ui_channel_name=channel_name,
                         ui_channel_number=channel_number,
                     )
+                    if pb_result == "deferred":
+                        _unbump_check2_attempt(bonus2)
+                        clear_slot_watches(devices)
+                        data.remove(next_row)
+                        continue
 
                 print(
                     f"{current_time_str()} 실행된 row 제거: "

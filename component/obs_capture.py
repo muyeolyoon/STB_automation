@@ -369,7 +369,7 @@ def badge_region_visibility(image) -> dict[str, Any]:
 
 
 def make_ad_broadcast_chat_preview(image, *, scale: int = 3):
-    """Chat 첨부용: 우측 상단 crop 확대 + 대비 강조 (원본 톤 유지)."""
+    """(레거시) 우측 상단 crop 확대. Chat 첨부는 전체화면 원본을 쓴다."""
     from PIL import ImageEnhance, ImageOps
 
     crop = crop_badge_mid(image)
@@ -380,20 +380,14 @@ def make_ad_broadcast_chat_preview(image, *, scale: int = 3):
 
 
 def save_ad_broadcast_chat_preview(image, capture_path: str) -> dict[str, Any]:
-    """*_chat.png 저장 + 시인성 메타. path는 성공 시에만 설정."""
+    """시인성 메타 + Chat 첨부 경로(전체화면 원본). path는 시인성 OK 시에만."""
     meta = badge_region_visibility(image)
     meta["path"] = None
     if not capture_path:
         return meta
-    try:
-        root, ext = os.path.splitext(capture_path)
-        out_path = f"{root}_chat{ext or '.png'}"
-        preview = make_ad_broadcast_chat_preview(image)
-        os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
-        preview.save(out_path)
-        meta["path"] = out_path
-    except Exception as e:
-        meta["note"] = f"{meta.get('note') or ''}; save 실패: {e}".strip("; ")
+    # Chat에는 우측 상단 확대본이 아니라 screencap 전체화면을 첨부
+    if meta.get("visible") and os.path.isfile(capture_path):
+        meta["path"] = capture_path
     return meta
 
 
